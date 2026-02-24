@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.memory.ChatMemory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
@@ -20,12 +19,12 @@ import reactor.core.publisher.Mono;
 @Setter
 public class AIService {
 
-    @Autowired
+
     private final ChatClient chatClient;
 
-    @Autowired
+
     private final TicketDatabaseTool ticketDatabaseTool;
-    @Autowired
+
     private final EmailTool emailTool;
 
     @Value("classpath:/helpdesk-system.st")
@@ -37,7 +36,7 @@ public class AIService {
         return this.chatClient
                 .prompt()
                 .advisors(advisorSpec -> advisorSpec.param(ChatMemory.CONVERSATION_ID, conversationId))
-                //tool informations
+                //tool information
                 .tools(ticketDatabaseTool, emailTool)
                 .system(systemPromptResource)
                 .user(query)
@@ -53,7 +52,7 @@ public class AIService {
         return this.chatClient
                 .prompt()
                 .advisors(advisorSpec -> advisorSpec.param(ChatMemory.CONVERSATION_ID, conversationId))
-                //tool informations
+                //tool information
                 .tools(ticketDatabaseTool, emailTool)
                 .system(systemPromptResource)
                 .user(query)
