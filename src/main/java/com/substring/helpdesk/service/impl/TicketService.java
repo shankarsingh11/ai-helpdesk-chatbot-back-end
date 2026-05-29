@@ -1,7 +1,7 @@
-package com.substring.helpdesk.service;
+package com.substring.helpdesk.service.impl;
 
 import com.substring.helpdesk.entity.Ticket;
-import com.substring.helpdesk.repository.TicketRepository;
+import com.substring.helpdesk.repository.TicketRepo;
 import jakarta.transaction.Transactional;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 public class TicketService {
 
     @Autowired
-    private final TicketRepository ticketRepository;
+    private final TicketRepo ticketRepository;
 
     //create ticket
     @Transactional
@@ -26,7 +26,6 @@ public class TicketService {
     }
 
     //update ticket
-
     @Transactional
     public Ticket updateTicket(Ticket ticket) {
         return ticketRepository.save(ticket);

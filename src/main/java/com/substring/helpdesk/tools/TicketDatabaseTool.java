@@ -1,8 +1,7 @@
 package com.substring.helpdesk.tools;
 
 import com.substring.helpdesk.entity.Ticket;
-import com.substring.helpdesk.service.TicketService;
-import jakarta.servlet.Servlet;
+import com.substring.helpdesk.service.impl.TicketService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.ai.tool.annotation.ToolParam;
@@ -13,9 +12,8 @@ import org.springframework.stereotype.Component;
 public class TicketDatabaseTool {
 
     private final TicketService ticketService;
-
     // create ticket tool
-    @Tool(description = "This tool helps to create new ticket in database.")
+    @Tool(description = "Create a new helpdesk ticket..")
     public Ticket createTicketTool(@ToolParam(description = "Ticket fields required to create new ticket") Ticket ticket) {
         try {
             System.out.println("going to create ticket");
