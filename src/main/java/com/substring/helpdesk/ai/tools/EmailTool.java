@@ -1,4 +1,4 @@
-package com.substring.helpdesk.tools;
+package com.substring.helpdesk.ai.tools;
 
 import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.ai.tool.annotation.ToolParam;

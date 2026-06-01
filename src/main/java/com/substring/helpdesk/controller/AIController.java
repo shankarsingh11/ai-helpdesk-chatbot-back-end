@@ -1,11 +1,13 @@
 package com.substring.helpdesk.controller;
 
 import com.substring.helpdesk.dto.request.AIRequestDTO;
-import com.substring.helpdesk.service.impl.AIService;
+import com.substring.helpdesk.service.impl.AIServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/helpdesk")
@@ -14,16 +16,18 @@ import reactor.core.publisher.Flux;
 public class AIController {
 
 
-    private  final AIService aiService;
-
+    private  final AIServiceImpl aiServiceImpl;
+// helpdesk api
     @PostMapping
-    public ResponseEntity<String >  getResponseFromAssistant(@RequestBody AIRequestDTO aiRequestDTO){
-        return ResponseEntity.ok(aiService.getResponseFromAssistant(aiRequestDTO));
+    public ResponseEntity<String > askQuestion(@Valid @RequestBody AIRequestDTO aiRequestDTO){
+        System.out.println("AIService Request: "+aiRequestDTO);
+        return ResponseEntity.ok(aiServiceImpl.getResponseFromAssistant(aiRequestDTO));
     }
-
+// stream chat api
     @PostMapping(value = "/stream")
     public Flux<String> streamResponseFromAssistant(@RequestBody AIRequestDTO aiRequestDTO){
-        return this.aiService.streamResponseFromAssistant(aiRequestDTO);
+        System.out.println("Stream AIService Request: "+aiServiceImpl);
+        return this.aiServiceImpl.streamResponseFromAssistant(aiRequestDTO);
     }
 
 

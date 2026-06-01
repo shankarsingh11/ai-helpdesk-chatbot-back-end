@@ -6,7 +6,8 @@ import javax.validation.constraints.NotNull;
 
 @Data
 public class AIRequestDTO {
-    @NotNull(message = "Query cannot be empty")
+
+    @NotNull(message = "query is required")
     String query;
-    String conversation_Id;
+    String conversationId;
 }

@@ -1,7 +1,5 @@
 package com.substring.helpdesk.entity;
 
-
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,6 +11,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 
 @Setter
 @Getter
@@ -27,10 +26,14 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@Column(unique = true)
+    @Column(nullable = false)
+    private String name;
+	@Column(nullable = false, unique = true)
 	private String username;
-	@Column(unique = true)
+	@Column(nullable = false,unique = true)
 	private String password;
+    @Column(nullable = false, unique = true)
+    private String email;
 	
 
 }
