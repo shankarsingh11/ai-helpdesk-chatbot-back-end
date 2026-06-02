@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.memory.ChatMemory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,11 @@ import java.util.UUID;
 @Service
 public class AIServiceImpl implements AIService {
 
+    @Qualifier("helpDeskChatClient")
     private final ChatClient chatClient;
+
+
+
     private final TicketDatabaseTool ticketDatabaseTool;
     private final EmailTool emailTool;
     private final AIRequestValidator validator;

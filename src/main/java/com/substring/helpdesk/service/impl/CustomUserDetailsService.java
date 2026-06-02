@@ -3,6 +3,7 @@ package com.substring.helpdesk.service.impl;
 import com.substring.helpdesk.entity.User;
 import com.substring.helpdesk.exception.custom.UserNotFoundException;
 import com.substring.helpdesk.repository.UserRepo;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,6 +16,7 @@ import java.util.Collections;
 
 @Slf4j
 @Service
+@Data
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 

@@ -48,3 +48,11 @@ logging:
 
 another:
   student: true
+ai:
+  memory:
+     max-messages: 20
+
+jwt:
+  secret-key: ${JWT_SECRET}
+  expiration: 86400000
+
