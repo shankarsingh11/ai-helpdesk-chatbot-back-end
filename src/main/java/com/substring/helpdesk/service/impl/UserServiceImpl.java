@@ -8,10 +8,12 @@ import com.substring.helpdesk.entity.User;
 import com.substring.helpdesk.exception.custom.UserAlreadyExistsException;
 import com.substring.helpdesk.exception.custom.UserNotFoundException;
 import com.substring.helpdesk.repository.UserRepo;
+import com.substring.helpdesk.security.PasswordConfig;
 import com.substring.helpdesk.service.UserService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -22,6 +24,8 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     private final UserRepo userRepo;
+    private final PasswordEncoder passwordEncoder;
+
 
     // user registration logic
     @Override
@@ -36,7 +40,7 @@ public class UserServiceImpl implements UserService {
         }
 
        // check exists username
-if (userRepo.existsByUsername(registerRequestDTO.getUsername())){
+        if (userRepo.existsByUsername(registerRequestDTO.getUsername())){
             log.info("Username:{}",registerRequestDTO.getUsername());
             throw new UserAlreadyExistsException("Username already registered try another username");
         }
@@ -52,18 +56,16 @@ if (userRepo.existsByUsername(registerRequestDTO.getUsername())){
         user.setName(registerRequestDTO.getName());
         user.setUsername(registerRequestDTO.getUsername().trim());
         user.setEmail(registerRequestDTO.getEmail().trim());
-        user.setPassword(registerRequestDTO.getPassword());
+        // Encrypt password before saving
+        user.setPassword(passwordEncoder.encode(registerRequestDTO.getPassword()));
 
-        // JPA->save method call
+        //save  user details information
         User savedUser = userRepo.save(user);
 
-        //logs
+        //logs printed
          log.info("Name:{}",savedUser.getName());
          log.info("user_id:{}",savedUser.getUsername());
          log.info("email:{}",savedUser.getEmail());
-
-        // password encoded here
-        //user.setPassword(encoder.encode(user.getPassword()));
 
         return RegisterResponseDTO.builder()
                 .id(savedUser.getId())
