@@ -1,4 +1,4 @@
-package com.substring.helpdesk.service.impl;
+package com.substring.helpdesk.service.ticket;
 
 import com.substring.helpdesk.entity.Ticket;
 import com.substring.helpdesk.repository.TicketRepo;

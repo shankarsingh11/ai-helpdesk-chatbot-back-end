@@ -1,4 +1,4 @@
-package com.substring.helpdesk.security;
+package com.substring.helpdesk.security.jwt;
 
 
 import io.jsonwebtoken.Claims;

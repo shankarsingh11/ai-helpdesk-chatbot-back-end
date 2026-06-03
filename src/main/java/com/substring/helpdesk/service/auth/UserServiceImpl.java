@@ -1,4 +1,4 @@
-package com.substring.helpdesk.service.impl;
+package com.substring.helpdesk.service.auth;
 
 import com.substring.helpdesk.dto.request.LoginRequestDTO;
 import com.substring.helpdesk.dto.request.RegisterRequestDTO;
@@ -9,7 +9,6 @@ import com.substring.helpdesk.exception.custom.UserAlreadyExistsException;
 import com.substring.helpdesk.exception.custom.UserNotFoundException;
 import com.substring.helpdesk.repository.UserRepo;
 
-import com.substring.helpdesk.service.UserService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

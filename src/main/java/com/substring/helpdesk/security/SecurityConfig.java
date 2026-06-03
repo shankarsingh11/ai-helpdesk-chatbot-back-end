@@ -1,6 +1,7 @@
 package com.substring.helpdesk.security;
 
 
+import com.substring.helpdesk.security.jwt.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -41,7 +42,8 @@ public class SecurityConfig {
                              auth.requestMatchers(
                                      // public api
                                      "/api/v1/auth/register",
-                                     "/api/v1/auth/login"
+                                     "/api/v1/auth/login",
+                                     "/api/v1/helpdesk"
                              ).permitAll()
                                      .anyRequest()
                                      .authenticated())

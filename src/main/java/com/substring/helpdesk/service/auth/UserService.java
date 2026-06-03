@@ -1,4 +1,4 @@
-package com.substring.helpdesk.service;
+package com.substring.helpdesk.service.auth;
 
 import com.substring.helpdesk.dto.request.LoginRequestDTO;
 import com.substring.helpdesk.dto.request.RegisterRequestDTO;

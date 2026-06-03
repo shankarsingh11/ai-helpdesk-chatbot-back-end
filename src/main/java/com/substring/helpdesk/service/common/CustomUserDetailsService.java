@@ -1,4 +1,4 @@
-package com.substring.helpdesk.service.impl;
+package com.substring.helpdesk.service.common;
 
 import com.substring.helpdesk.entity.User;
 import com.substring.helpdesk.exception.custom.UserNotFoundException;

@@ -1,10 +1,9 @@
-package com.substring.helpdesk.service.impl;
+package com.substring.helpdesk.service.ai;
 import com.substring.helpdesk.dto.request.AIRequestDTO;
 import com.substring.helpdesk.ai.tools.EmailTool;
 import com.substring.helpdesk.ai.tools.TicketDatabaseTool;
 import com.substring.helpdesk.exception.custom.AIServiceResponseException;
-import com.substring.helpdesk.service.AIService;
-import com.substring.helpdesk.validator.AIRequestValidator;
+import com.substring.helpdesk.utils.validator.AIRequestValidator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
@@ -31,7 +30,7 @@ public class AIServiceImpl implements AIService {
     private final EmailTool emailTool;
     private final AIRequestValidator validator;
 
-    @Value("classpath:/helpdesk-system.st")
+    @Value("classpath:prompts/helpdesk-system.st")
     private Resource systemPromptResource;
 
     @Override

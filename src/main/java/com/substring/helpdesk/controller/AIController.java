@@ -1,7 +1,7 @@
 package com.substring.helpdesk.controller;
 
 import com.substring.helpdesk.dto.request.AIRequestDTO;
-import com.substring.helpdesk.service.impl.AIServiceImpl;
+import com.substring.helpdesk.service.ai.AIServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

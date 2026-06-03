@@ -4,8 +4,8 @@ spring:
   #datasource configurations
   datasource:
     url: jdbc:mysql://localhost:3306/spring_ai_helpdesk?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-    username: shankar
-    password: Sh9560@@##
+    username: ${MYSQL_USERNAME}
+    password: ${MYSQL_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
@@ -32,7 +32,7 @@ spring:
 
 
 server:
-  port: 8081
+  port: ${PORT_NO}
 
 logging:
   level:
@@ -42,8 +42,6 @@ logging:
           chat:
             client:
               advisor: DEBUG
-
-
 #database configurations
 
 another:
@@ -55,4 +53,18 @@ ai:
 jwt:
   secret-key: ${JWT_SECRET}
   expiration: 86400000
+
+# OAuth2 Google with Configure
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+
+            scope:
+              - openid
+              - email
+              - profile
 

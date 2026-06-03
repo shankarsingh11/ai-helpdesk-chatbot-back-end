@@ -1,7 +1,6 @@
-package com.substring.helpdesk.validator;
+package com.substring.helpdesk.utils.validator;
 
 import com.substring.helpdesk.dto.request.AIRequestDTO;
-import com.substring.helpdesk.exception.custom.AIServiceResponseException;
 import com.substring.helpdesk.exception.custom.AIServiceValidatorException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
