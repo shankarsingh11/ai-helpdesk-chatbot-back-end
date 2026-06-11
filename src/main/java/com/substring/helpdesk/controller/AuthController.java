@@ -4,7 +4,7 @@ import com.substring.helpdesk.dto.request.LoginRequestDTO;
 import com.substring.helpdesk.dto.request.RegisterRequestDTO;
 import com.substring.helpdesk.dto.response.LoginResponseDTO;
 import com.substring.helpdesk.dto.response.RegisterResponseDTO;
-import com.substring.helpdesk.service.UserService;
+import com.substring.helpdesk.service.auth.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

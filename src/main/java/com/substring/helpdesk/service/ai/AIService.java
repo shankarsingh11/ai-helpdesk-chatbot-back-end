@@ -1,4 +1,4 @@
-package com.substring.helpdesk.service;
+package com.substring.helpdesk.service.ai;
 
 import com.substring.helpdesk.dto.request.AIRequestDTO;
 import reactor.core.publisher.Flux;

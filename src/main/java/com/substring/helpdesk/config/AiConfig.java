@@ -1,14 +1,12 @@
 package com.substring.helpdesk.config;
 
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
-import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.memory.MessageWindowChatMemory;
 import org.springframework.ai.chat.memory.repository.jdbc.JdbcChatMemoryRepository;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,32 +14,48 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AiConfig {
 
-    private Logger logger = org.slf4j.LoggerFactory.getLogger(AiConfig.class);
+    @Value("${ai.memory.max-messages}")
+    private int maxMessages;
 
-//
-//    public JdbcChatMemoryRepository jdbcChatMemoryRepository(){
-//        return JdbcChatMemoryRepository.builder()
-//                .jdbcTemplate()
-//                .jdbcTemplate()
-//                .build();
-//    }
-    @Qualifier
+    private static final String System_Prompt = """
+            You are Liza, a professional Help Desk Assistant for Substring Technologies.
+            Guidelines:
+            - Be polite and professional.
+            - Collect missing information before answering.
+            - Provide clear troubleshooting steps.
+            - Keep responses concise.
+            - Summarize answers within 400 words.
+            """;
+
+    // chat memory ko create kar sakte hai
+    // store chats
     @Bean
-    public ChatClient chatClient(ChatClient.Builder builder, JdbcChatMemoryRepository jdbcChatMemoryRepository) {
+    public MessageWindowChatMemory chatMemory(
+            JdbcChatMemoryRepository repository) {
 
-
-        // chat memory ko create kar sakte hai
-        var chatMemory=MessageWindowChatMemory.builder()
-                .chatMemoryRepository(jdbcChatMemoryRepository)
-                .maxMessages(20)
+        return MessageWindowChatMemory.builder()
+                .chatMemoryRepository(repository)
+                .maxMessages(maxMessages)
                 .build();
+    }
 
-        logger.info("ChatClient bean created.");
-        logger.info("chat memory bean created. {}", chatMemory.getClass().getName());
+    // ollama chat client
+    @Bean("helpDeskChatClient")
+    public ChatClient chatClient(ChatClient.Builder builder,  MessageWindowChatMemory chatMemory) {
+
+        log.info("ChatClient bean created.");
+        log.info("chat memory bean created. {}", chatMemory.getClass().getName());
+
         return builder
-                .defaultSystem("Summerize the response within 400 words.")
+                .defaultSystem(System_Prompt)
                 .defaultAdvisors(new SimpleLoggerAdvisor(),
                         MessageChatMemoryAdvisor.builder(chatMemory).build()).build();
     }
+
+    //further more chat client implement in future
+
+    // openAI chat client
+    // gemini chat client
+
 
 }

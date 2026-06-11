@@ -1,7 +1,7 @@
 package com.substring.helpdesk.ai.tools;
 
 import com.substring.helpdesk.entity.Ticket;
-import com.substring.helpdesk.service.impl.TicketService;
+import com.substring.helpdesk.service.ticket.TicketService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.ai.tool.annotation.ToolParam;
