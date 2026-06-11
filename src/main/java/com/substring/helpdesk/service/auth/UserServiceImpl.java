@@ -38,13 +38,13 @@ public class UserServiceImpl implements UserService {
         //Validate Duplicate user properties
 
         // check existing username or email
-        if(userRepo.existsByEmail(registerRequestDTO.getEmail())) {
+        if(userRepo.existsByEmailIgnoreCase(registerRequestDTO.getEmail())) {
             log.info("register email:{}",registerRequestDTO.getEmail());
             throw new UserAlreadyExistsException("Email already registered try another email id");
         }
 
        // check exists username
-        if (userRepo.existsByUsername(registerRequestDTO.getUsername())){
+        if (userRepo.existsByUsernameIgnoreCase(registerRequestDTO.getUsername())){
             log.info("Username:{}",registerRequestDTO.getUsername());
             throw new UserAlreadyExistsException("Username already registered try another username");
         }
@@ -94,7 +94,7 @@ public class UserServiceImpl implements UserService {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
         // fetch full user from DB
-        User user = userRepo.findByUsernameOrEmail(
+        User user = userRepo.findByUsernameIgnoreCaseOrEmailIgnoreCase(
                         userDetails.getUsername(),
                         userDetails.getUsername()
                 )

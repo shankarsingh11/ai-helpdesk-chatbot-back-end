@@ -16,38 +16,38 @@ import java.util.Collections;
 
 @Slf4j
 @Service
-@Data
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserRepo userRepo;
 
+
     @Override
-    public UserDetails loadUserByUsername(String usernameOremail)
+    public UserDetails loadUserByUsername(String usernameOrEmail)
             throws UsernameNotFoundException {
 
-        log.info("Load user by username: {}", usernameOremail);
+        log.info("Load user by username/Email: {}", usernameOrEmail);
 
-        User user = findUserDetails(usernameOremail);
+        User user = findUserDetails(usernameOrEmail);
 
         return org.springframework.security.core.userdetails.User
                 .builder()
                 .username(user.getUsername())
                 .password(user.getPassword())
-                .authorities(Collections.EMPTY_LIST)//user has no roles and no permissions.
+                .authorities(Collections.emptyList())//user has no roles and no permissions.
                 .build();
     }
 
 
 
     // find userdetails method
-    private  User  findUserDetails(String usernameOremail){
+    private  User  findUserDetails(String usernameOrEmail){
         User user = userRepo
-                .findByUsernameOrEmail
-                        (usernameOremail, usernameOremail)
+                .findByUsernameIgnoreCaseOrEmailIgnoreCase
+                        (usernameOrEmail, usernameOrEmail)
                 .orElseThrow(() -> {
-                    log.info("User not found:{}", usernameOremail);
-                    return new UserNotFoundException("User not found" + usernameOremail);
+                    log.warn("User not found:{}", usernameOrEmail);
+                    return new UserNotFoundException("User not found" + usernameOrEmail);
                 });
         return  user;
     }

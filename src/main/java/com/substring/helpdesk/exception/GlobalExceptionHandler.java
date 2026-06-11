@@ -112,7 +112,21 @@ public ResponseEntity<ErrorResponse> handleUserAlreadyExists(UserAlreadyExistsEx
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(aiErrorResponse);
     }
 
+    // JWTAuthenticationException
+    @ExceptionHandler(JwtAuthenticationException.class)
+    public ResponseEntity<ErrorResponse> handlerJwtAuthenticationException(JwtAuthenticationException ex,HttpServletRequest request){
 
+        log.error("JWT AUTHENTICATION FAILED ", ex);
+
+        ErrorResponse errorResponse= ErrorResponse.builder()
+                .status(HttpStatus.UNAUTHORIZED.value())
+                .error("JWT_AUTHENTICATION_FAILED")
+                .message(ex.getMessage())
+                .path(request.getRequestURI())
+                .timestamp(LocalDateTime.now())
+                .build();
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
+    }
 
 
 }
