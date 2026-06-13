@@ -28,7 +28,7 @@
 
 ## ✨ Features
 
-### 🎯 Core Features
+### Core Features
 
 - **AI-Powered Ticket Generation** - Automatically create and categorize support tickets using AI
 - **Intelligent Ticket Routing** - Smart assignment of tickets to appropriate support agents
@@ -38,9 +38,6 @@
 - **Priority Management** - Automatic ticket prioritization based on urgency
 - **User Authentication** - Secure JWT-based authentication
 - **Role-Based Access Control** - Admin, Agent, and User roles with granular permissions
-- **Multi-channel Support** - Support tickets from various sources
-- **Analytics & Reporting** - Comprehensive metrics and insights
-- **Email Notifications** - Automated status updates via email
 
 ### 🔒 Security Features
 
@@ -49,8 +46,6 @@
 - **Input Validation** - Comprehensive request validation
 - **SQL Injection Prevention** - Parameterized queries via JPA
 - **CORS Support** - Configurable cross-origin resource sharing
-- **Rate Limiting** - Protection against abuse
-- **Audit Logging** - Track all critical operations
 
 ### 📊 Data Management
 
@@ -68,12 +63,11 @@
 - **Spring Boot 3.0+** - Modern, production-ready framework
 - **Spring Web (MVC)** - REST API development
 - **Spring Data JPA** - Object-relational mapping and database access
-- **Spring Security** - Authentication and authorization
+- **Spring Security & OAuth2** - Authentication and authorization
 - **Spring AI** - AI/ML integration and tool management
 
 ### Database
 - **MySQL / PostgreSQL** - Primary relational database
-- **H2 Database** - In-memory testing database
 
 ### Security & Validation
 - **Spring Security** - Authentication and authorization
@@ -90,13 +84,12 @@
 ### Development Tools
 - **Spring Boot DevTools** - Fast application restarts
 - **Swagger/Springdoc OpenAPI** - API documentation
+- **Postman** - API Testing
 
 ### Testing (Recommended)
 - **JUnit 5** - Unit testing framework
 - **Mockito** - Mocking library
 - **Spring Boot Test** - Integration testing
-
----
 
 ## 🏗 Architecture
 
@@ -150,7 +143,7 @@ Database
 
 Before you begin, ensure you have the following installed:
 
-- **Java 17 or higher** - [Download](https://www.oracle.com/java/technologies/javase-downloads.html)
+- **Java 17 or higher** - [Download]((https://download.oracle.com/java/21/latest/jdk-21_windows-x64_bin.msi (sha256))
 - **Maven 3.8+** - [Download](https://maven.apache.org/download.cgi)
 - **MySQL 8.0+ or PostgreSQL 12+** - [Download](https://www.mysql.com/downloads/)
 - **Git** - [Download](https://git-scm.com/)
