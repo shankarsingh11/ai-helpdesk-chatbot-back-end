@@ -2,7 +2,7 @@
 
 > A powerful, intelligent helpdesk support system powered by Spring Boot and AI, designed to automate ticket management, provide intelligent responses, and streamline customer support workflows.
 
-[![Java Version](https://img.shields.io/badge/Java-21+-orange.svg)](https://download.oracle.com/java/21/latest/jdk-21_windows-x64_bin.msi (sha256)))
+[![Java Version](https://img.shields.io/badge/Java-21+-orange.svg)](https://download.oracle.com/java/21/latest/jdk-21_windows-x64_bin.msi (sha256))
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.0+-green.svg)](https://spring.io/projects/spring-boot)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)]()
