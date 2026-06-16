@@ -5,11 +5,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Data
-public class LoginRequestDTO {
+public class LoginRequest {
 
     @NotNull(message = "enter username or email")
-    private String usernameOrEmail;
-
+    private String Email;
     @Size(min = 6, message = "enter your correct password")
     @NotNull(message = "Password is required")
     private String password;

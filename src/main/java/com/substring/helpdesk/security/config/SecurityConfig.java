@@ -1,4 +1,4 @@
-package com.substring.helpdesk.security;
+package com.substring.helpdesk.security.config;
 
 
 import com.substring.helpdesk.security.jwt.JwtAuthenticationFilter;

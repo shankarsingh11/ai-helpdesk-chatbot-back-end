@@ -1,10 +1,10 @@
 package com.substring.helpdesk.service.ai;
 
-import com.substring.helpdesk.dto.request.AIRequestDTO;
+import com.substring.helpdesk.dto.request.AIRequest;
 import reactor.core.publisher.Flux;
 
 
 public interface AIService {
-    public String getResponseFromAssistant(AIRequestDTO aiRequestDTO);
-    public Flux<String> streamResponseFromAssistant(AIRequestDTO aiRequestDTO);
+    public String getResponseFromAssistant(AIRequest aiRequest);
+    public Flux<String> streamResponseFromAssistant(AIRequest aiRequest);
 }

@@ -1,9 +1,9 @@
 package com.substring.helpdesk.service.ai;
-import com.substring.helpdesk.dto.request.AIRequestDTO;
+import com.substring.helpdesk.dto.request.AIRequest;
 import com.substring.helpdesk.ai.tools.EmailTool;
 import com.substring.helpdesk.ai.tools.TicketDatabaseTool;
 import com.substring.helpdesk.exception.custom.AIServiceResponseException;
-import com.substring.helpdesk.utils.validator.AIRequestValidator;
+import com.substring.helpdesk.validator.AIRequestValidator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
@@ -34,13 +34,13 @@ public class AIServiceImpl implements AIService {
     private Resource systemPromptResource;
 
     @Override
-    public String getResponseFromAssistant(AIRequestDTO aiRequestDTO) {
+    public String getResponseFromAssistant(AIRequest aiRequest) {
 
         // validate request
-        validator.validate(aiRequestDTO);
+        validator.validate(aiRequest);
          // set value
-        String query= aiRequestDTO.getQuery();
-        String conversationId= getConversationId(aiRequestDTO);
+        String query= aiRequest.getQuery();
+        String conversationId= getConversationId(aiRequest);
         //logs
         log.info("Processing AI request. ConversationId: {}", conversationId);
         log.debug("User Query: {}", query);
@@ -68,14 +68,14 @@ public class AIServiceImpl implements AIService {
     }
 
     @Override
-    public Flux<String> streamResponseFromAssistant(AIRequestDTO aiRequestDTO) {
+    public Flux<String> streamResponseFromAssistant(AIRequest aiRequest) {
 
         //null check like you did in getResponseFromAssistant
-        if (aiRequestDTO == null) return Flux.just("Please tell me how I can help you.");
+        if (aiRequest == null) return Flux.just("Please tell me how I can help you.");
 
 
-        String query=aiRequestDTO.getQuery();
-        String conversationId=getConversationId(aiRequestDTO);
+        String query= aiRequest.getQuery();
+        String conversationId=getConversationId(aiRequest);
 
         log.info("Query : {}", query);
         log.info("ConversationId : {}", conversationId);
@@ -114,7 +114,7 @@ public class AIServiceImpl implements AIService {
 
     // get conversationId  method
     private String getConversationId(
-            AIRequestDTO request) {
+            AIRequest request) {
 
         if (request.getConversationId() == null ||
                 request.getConversationId().isBlank()) {

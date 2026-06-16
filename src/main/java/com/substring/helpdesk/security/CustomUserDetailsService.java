@@ -1,9 +1,8 @@
-package com.substring.helpdesk.service.common;
+package com.substring.helpdesk.security;
 
 import com.substring.helpdesk.entity.User;
 import com.substring.helpdesk.exception.custom.UserNotFoundException;
 import com.substring.helpdesk.repository.UserRepo;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,7 +31,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         return org.springframework.security.core.userdetails.User
                 .builder()
-                .username(user.getUsername())
                 .password(user.getPassword())
                 .authorities(Collections.emptyList())//user has no roles and no permissions.
                 .build();
@@ -41,13 +39,12 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 
     // find userdetails method
-    private  User  findUserDetails(String usernameOrEmail){
+    private  User  findUserDetails(String email){
         User user = userRepo
-                .findByUsernameIgnoreCaseOrEmailIgnoreCase
-                        (usernameOrEmail, usernameOrEmail)
+                .findByEmail(email)
                 .orElseThrow(() -> {
-                    log.warn("User not found:{}", usernameOrEmail);
-                    return new UserNotFoundException("User not found" + usernameOrEmail);
+                    log.warn("User not found:{}", email);
+                    return new UserNotFoundException("User not found" + email);
                 });
         return  user;
     }

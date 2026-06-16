@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.validation.constraints.NotNull;
 
 @Data
-public class AIRequestDTO {
+public class AIRequest {
 
     @NotNull(message = "query is required")
     String query;
