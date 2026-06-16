@@ -7,21 +7,20 @@ import lombok.Data;
 
 
 @Data
-public class RegisterRequestDTO {
+public class RegisterRequest {
 
     @NotNull(message = "name is required")
     private String name;
 
-    @NotNull(message = "username is required")
-    private String username;
+    @NotNull(message = "email is required")
+    @Email(message = "please provide a valid email format")
+    private String email;
 
     @Size(min = 6, message = "password must be at least 6 characters")
     @NotNull
     private String password;
 
-    @NotNull(message = "email is required")
-    @Email(message = "please provide a valid email format")
-    private String email;
+
 
 
 }

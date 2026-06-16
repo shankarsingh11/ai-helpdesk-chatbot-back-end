@@ -1,6 +1,6 @@
-package com.substring.helpdesk.utils.validator;
+package com.substring.helpdesk.validator;
 
-import com.substring.helpdesk.dto.request.AIRequestDTO;
+import com.substring.helpdesk.dto.request.AIRequest;
 import com.substring.helpdesk.exception.custom.AIServiceValidatorException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AIRequestValidator {
 
-    public void validate(AIRequestDTO requestDTO){
+    public void validate(AIRequest requestDTO){
         if (requestDTO==null){
             throw new AIServiceValidatorException("Please tell me how can help you..");
         }

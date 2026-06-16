@@ -1,9 +1,9 @@
-package com.substring.helpdesk.service.auth;
+package com.substring.helpdesk.service.user;
 
-import com.substring.helpdesk.dto.request.LoginRequestDTO;
-import com.substring.helpdesk.dto.request.RegisterRequestDTO;
-import com.substring.helpdesk.dto.response.LoginResponseDTO;
-import com.substring.helpdesk.dto.response.RegisterResponseDTO;
+import com.substring.helpdesk.dto.request.LoginRequest;
+import com.substring.helpdesk.dto.request.RegisterRequest;
+import com.substring.helpdesk.dto.response.LoginResponse;
+import com.substring.helpdesk.dto.response.RegisterResponse;
 import com.substring.helpdesk.entity.User;
 import com.substring.helpdesk.exception.custom.UserAlreadyExistsException;
 import com.substring.helpdesk.exception.custom.UserNotFoundException;
@@ -33,20 +33,14 @@ public class UserServiceImpl implements UserService {
 
     // user registration logic
     @Override
-    public RegisterResponseDTO createUser(RegisterRequestDTO registerRequestDTO) {
+    public RegisterResponse createUser(RegisterRequest registerRequest) {
 
         //Validate Duplicate user properties
 
-        // check existing username or email
-        if(userRepo.existsByEmailIgnoreCase(registerRequestDTO.getEmail())) {
-            log.info("register email:{}",registerRequestDTO.getEmail());
+        // check existing email
+        if(userRepo.existsByEmailIgnoreCase(registerRequest.getEmail())) {
+            log.info("register email:{}", registerRequest.getEmail());
             throw new UserAlreadyExistsException("Email already registered try another email id");
-        }
-
-       // check exists username
-        if (userRepo.existsByUsernameIgnoreCase(registerRequestDTO.getUsername())){
-            log.info("Username:{}",registerRequestDTO.getUsername());
-            throw new UserAlreadyExistsException("Username already registered try another username");
         }
 
        /* // check exists password
@@ -57,24 +51,21 @@ public class UserServiceImpl implements UserService {
 
         // User Object created
         User user = new User();
-        user.setName(registerRequestDTO.getName());
-        user.setUsername(registerRequestDTO.getUsername().trim());
-        user.setEmail(registerRequestDTO.getEmail().trim());
+        user.setName(registerRequest.getName());
+        user.setEmail(registerRequest.getEmail().trim());
         // Encrypt password before saving
-        user.setPassword(passwordEncoder.encode(registerRequestDTO.getPassword()));
+        user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
 
         //save  user details information
         User savedUser = userRepo.save(user);
 
         //logs printed
          log.info("Name:{}",savedUser.getName());
-         log.info("user_id:{}",savedUser.getUsername());
          log.info("email:{}",savedUser.getEmail());
 
-        return RegisterResponseDTO.builder()
+        return RegisterResponse.builder()
                 .id(savedUser.getId())
                 .name(savedUser.getName())
-                .username(savedUser.getUsername())
                 .email(savedUser.getEmail())
                 .message("User registered successfully")
                 .build();
@@ -82,11 +73,11 @@ public class UserServiceImpl implements UserService {
 
     // User login logic
     @Override
-    public LoginResponseDTO loginUser(LoginRequestDTO loginRequestDTO) {
+    public LoginResponse loginUser(LoginRequest loginRequestDTO) {
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        loginRequestDTO.getUsernameOrEmail(),
+                        loginRequestDTO.getEmail(),
                         loginRequestDTO.getPassword()
                 )
         );
@@ -94,15 +85,14 @@ public class UserServiceImpl implements UserService {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
         // fetch full user from DB
-        User user = userRepo.findByUsernameIgnoreCaseOrEmailIgnoreCase(
-                        userDetails.getUsername(),
+        User user = userRepo.findByEmail(
                         userDetails.getUsername()
                 )
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
 
         log.info("User logged in successfully. Username: {}", user.getUsername());
 
-        return LoginResponseDTO.builder()
+        return LoginResponse.builder()
                 .message("User Login Successfully")
                 .username(user.getUsername())
                 .email(user.getEmail())
