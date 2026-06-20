@@ -1,11 +1,10 @@
-package com.substring.helpdesk.service.auth;
+package com.substring.helpdesk.service.user;
 
-import com.substring.helpdesk.service.common.OAuth2UserInfo;
+import com.substring.helpdesk.security.oauth.userinfo.OAuth2UserInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
-import java.util.Objects;
 
 @Component
 @RequiredArgsConstructor
