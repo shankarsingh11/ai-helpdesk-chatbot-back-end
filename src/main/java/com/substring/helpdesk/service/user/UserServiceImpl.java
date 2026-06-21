@@ -94,10 +94,13 @@ public class UserServiceImpl implements UserService {
                         new UserNotFoundException("User not found"));
 
 
+        log.info("User logged in successfully : {}", user.getEmail());
+
         String token =
                 jwtService.generateToken(userDetails);
 
         log.info("User logged in successfully. Username: {}", user.getEmail());
+
 
         return LoginResponse.builder()
                 .Status(String.valueOf(HttpStatus.ACCEPTED.value()))

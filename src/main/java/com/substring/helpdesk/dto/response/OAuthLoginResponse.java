@@ -24,5 +24,4 @@ public class OAuthLoginResponse {
 
     private AuthProvider provider;
 
-    private String message;
 }
