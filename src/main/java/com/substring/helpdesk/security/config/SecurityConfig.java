@@ -1,7 +1,12 @@
 package com.substring.helpdesk.security.config;
 
 
+import com.substring.helpdesk.security.jwt.JwtAccessDeniedHandler;
+import com.substring.helpdesk.security.jwt.JwtAuthenticationEntryPoint;
 import com.substring.helpdesk.security.jwt.JwtAuthenticationFilter;
+import com.substring.helpdesk.security.oauth.CustomOAuth2UserService;
+import com.substring.helpdesk.security.oauth.OAuth2AuthenticationFailureHandler;
+import com.substring.helpdesk.security.oauth.OAuth2AuthenticationSuccessHandler;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -17,6 +22,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 
 @Slf4j
@@ -27,8 +33,13 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+    private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
     private final UserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
+    private final CustomOAuth2UserService customOAuth2UserService;
+    private final OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
+    private final OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
 
 
  @Bean
@@ -36,17 +47,33 @@ public class SecurityConfig {
 
              http
                      . csrf(csrf-> csrf.disable())
+
+                     .exceptionHandling( ex ->
+                                ex
+                                     .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                                        .accessDeniedHandler(jwtAccessDeniedHandler)
+                     )
                      .sessionManagement(session->
                              session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                      .authorizeHttpRequests(auth->
                              auth.requestMatchers(
                                      // public api
-                                     "/api/v1/auth/register",
-                                     "/api/v1/auth/login",
-                                     "/api/v1/helpdesk"
+                                             "/api/v1/auth/**",
+                                             "/oauth2/**",
+                                             "/login/oauth2/**"
                              ).permitAll()
-                                     .anyRequest()
-                                     .authenticated())
+                                     .anyRequest().authenticated())
+
+                     .oauth2Login(oauth ->
+                                      oauth.userInfoEndpoint(userInfo-> userInfo.userService(customOAuth2UserService))
+                                              .successHandler(oAuth2AuthenticationSuccessHandler)
+                                              .failureHandler(oAuth2AuthenticationFailureHandler)
+                     )
+
+                     .addFilterBefore(
+                             jwtAuthenticationFilter,
+                             UsernamePasswordAuthenticationFilter.class
+                     )
                      .authenticationProvider(authenticationProvider());
 
              return http.build();

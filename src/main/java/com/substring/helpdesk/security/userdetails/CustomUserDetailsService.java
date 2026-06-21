@@ -1,7 +1,6 @@
-package com.substring.helpdesk.security;
+package com.substring.helpdesk.security.userdetails;
 
 import com.substring.helpdesk.entity.User;
-import com.substring.helpdesk.exception.custom.UserNotFoundException;
 import com.substring.helpdesk.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

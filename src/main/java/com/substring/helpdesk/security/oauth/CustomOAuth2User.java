@@ -4,6 +4,7 @@ import com.substring.helpdesk.entity.User;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.Collection;
@@ -43,7 +44,7 @@ public class CustomOAuth2User implements OAuth2User {
         return user.getEmail();
     }
 
-    public String getEmail() {
+    public UserDetails getEmail() {
         return user.getEmail();
     }
 
