@@ -93,23 +93,19 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() ->
                         new UserNotFoundException("User not found"));
 
-<<<<<<< HEAD
+
         log.info("User logged in successfully : {}", user.getEmail());
-=======
 
         String token =
                 jwtService.generateToken(userDetails);
 
         log.info("User logged in successfully. Username: {}", user.getEmail());
->>>>>>> feature/spring-security-jwt-auth
+
 
         return LoginResponse.builder()
                 .Status(String.valueOf(HttpStatus.ACCEPTED.value()))
                 .message("User Login Successfully")
-<<<<<<< HEAD
-=======
                 .token(token)
->>>>>>> feature/spring-security-jwt-auth
                 .build();
     }
 
