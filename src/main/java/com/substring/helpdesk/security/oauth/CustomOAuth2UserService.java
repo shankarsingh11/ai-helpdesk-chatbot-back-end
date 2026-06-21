@@ -8,81 +8,122 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
+import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class CustomOAuth2UserService extends
-DefaultOAuth2UserService{
+public class CustomOAuth2UserService
+        implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
 
     private final UserRepo userRepo;
-    private final OAuth2UserInfoFactory auth2UserInfoFactory;
+    private final OAuth2UserInfoFactory userInfoFactory;
 
     @Override
-    public OAuth2User loadUser(OAuth2UserRequest oAuth2UserRequest){
+    public OAuth2User loadUser(
+            OAuth2UserRequest userRequest)
+            throws OAuth2AuthenticationException {
 
-     OAuth2User oAuth2User = super.loadUser(oAuth2UserRequest);
+        DefaultOAuth2UserService delegate =
+                new DefaultOAuth2UserService();
 
-     String  registrationId = oAuth2UserRequest
-             .getClientRegistration().getRegistrationId();
+        OAuth2User oauth2User =
+                delegate.loadUser(userRequest);
 
-        log.info("OAuth Login Provider: {}", registrationId);
+        String registrationId =
+                userRequest
+                        .getClientRegistration()
+                        .getRegistrationId();
 
-        OAuth2UserInfo userInfo= auth2UserInfoFactory.getOAuth2UserInfo(
+        OAuth2UserInfo userInfo =
+                userInfoFactory.getOAuth2UserInfo(
+                        registrationId,
+                        oauth2User.getAttributes()
+                );
+
+        return processOAuthUser(
                 registrationId,
-                oAuth2User.getAttributes()
-        );
-
-        User user = saveOrUpdateUser(
                 userInfo,
-                registrationId
+                oauth2User
         );
-
-        return new CustomOAuth2User(user,oAuth2User.getAttributes());
-
     }
 
-
-    private User saveOrUpdateUser(
+    private OAuth2User processOAuthUser(
+            String registrationId,
             OAuth2UserInfo userInfo,
+            OAuth2User oauth2User) {
+
+        if (userInfo.getEmail() == null) {
+            throw new OAuth2AuthenticationException(
+                    "Email not found from OAuth provider"
+            );
+        }
+
+        User user = userRepo
+                .findByEmail(userInfo.getEmail())
+                .orElseGet(() ->
+                        createNewUser(
+                                registrationId,
+                                userInfo
+                        )
+                );
+
+        updateExistingUser(user, userInfo);
+
+        userRepo.save(user);
+
+        return new CustomOAuth2User(
+                user,
+                oauth2User.getAttributes()
+        );
+    }
+
+    private User createNewUser(
+            String registrationId,
+            OAuth2UserInfo userInfo) {
+
+        return User.builder()
+                .name(userInfo.getName())
+                .email(userInfo.getEmail())
+                .profilePicture(userInfo.getImageUrl())
+                .provider(getProvider(registrationId))
+                .providerId(userInfo.getId())
+                .enabled(true)
+                .build();
+    }
+
+    private void updateExistingUser(
+            User user,
+            OAuth2UserInfo userInfo) {
+
+        user.setName(userInfo.getName());
+        user.setProfilePicture(
+                userInfo.getImageUrl()
+        );
+    }
+
+    private AuthProvider getProvider(
             String registrationId) {
 
-        return userRepo.findByEmail(userInfo.getEmail())
-                .map(existingUser -> {
+        return switch (registrationId.toLowerCase()) {
 
-                    existingUser.setName(
-                            userInfo.getName()
+            case "google" ->
+                    AuthProvider.GOOGLE;
+
+            case "github" ->
+                    AuthProvider.GITHUB;
+
+            case "linkedin" ->
+                    AuthProvider.LINKEDIN;
+
+            default ->
+                    throw new IllegalArgumentException(
+                            "Unsupported Provider: "
+                                    + registrationId
                     );
-
-                    existingUser.setProfilePicture(
-                            userInfo.getImageUrl()
-                    );
-
-                    return userRepo.save(existingUser);
-                })
-                .orElseGet(() -> {
-
-                    User user = User.builder()
-                            .name(userInfo.getName())
-                            .email(userInfo.getEmail())
-                            .profilePicture(
-                                    userInfo.getImageUrl()
-                            )
-                            .providerId(
-                                    userInfo.getId()
-                            )
-                            .provider(
-                                    AuthProvider.valueOf(
-                                            registrationId.toUpperCase()
-                                    )
-                            )
-                            .enabled(true)
-                            .build();
-
-                    return userRepo.save(user);
-                });
+        };
     }
-
 }
