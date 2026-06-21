@@ -6,13 +6,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapper {
-
     public LoginResponse toDto(User user) {
-
       return   LoginResponse.builder()
-                .email(user.getEmail())
                 .message("")
                 .build();
     }
-
 }

@@ -90,12 +90,10 @@ public class UserServiceImpl implements UserService {
                 )
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
 
-        log.info("User logged in successfully. Username: {}", user.getUsername());
+        log.info("User logged in successfully : {}", user.getEmail());
 
         return LoginResponse.builder()
                 .message("User Login Successfully")
-                .username(user.getUsername())
-                .email(user.getEmail())
                 .build();
     }
 
