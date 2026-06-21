@@ -9,9 +9,11 @@ import com.substring.helpdesk.exception.custom.UserAlreadyExistsException;
 import com.substring.helpdesk.exception.custom.UserNotFoundException;
 import com.substring.helpdesk.repository.UserRepo;
 
+import com.substring.helpdesk.security.jwt.JwtService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -29,18 +31,20 @@ public class UserServiceImpl implements UserService {
     private final UserRepo userRepo;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
+    private final JwtService jwtService;
 
 
-    // user registration logic
+    // user registration API logic
     @Override
     public RegisterResponse createUser(RegisterRequest registerRequest) {
 
         //Validate Duplicate user properties
-
         // check existing email
         if(userRepo.existsByEmailIgnoreCase(registerRequest.getEmail())) {
-            log.info("register email:{}", registerRequest.getEmail());
-            throw new UserAlreadyExistsException("Email already registered try another email id");
+            log.warn("Registration failed. Email already exists: {}", registerRequest.getEmail());
+
+            throw new
+                    UserAlreadyExistsException("Email already registered try another email id");
         }
 
        /* // check exists password
@@ -51,8 +55,9 @@ public class UserServiceImpl implements UserService {
 
         // User Object created
         User user = new User();
-        user.setName(registerRequest.getName());
+        user.setName(registerRequest.getName().trim());
         user.setEmail(registerRequest.getEmail().trim());
+
         // Encrypt password before saving
         user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
 
@@ -60,25 +65,22 @@ public class UserServiceImpl implements UserService {
         User savedUser = userRepo.save(user);
 
         //logs printed
-         log.info("Name:{}",savedUser.getName());
-         log.info("email:{}",savedUser.getEmail());
+        log.info("User registered successfully. UserId={}", savedUser.getId());
 
         return RegisterResponse.builder()
-                .id(savedUser.getId())
-                .name(savedUser.getName())
-                .email(savedUser.getEmail())
+                .status(String.valueOf(HttpStatus.CREATED.value()))
                 .message("User registered successfully")
                 .build();
     }
 
-    // User login logic
+    // User login API logic
     @Override
-    public LoginResponse loginUser(LoginRequest loginRequestDTO) {
+    public LoginResponse loginUser(LoginRequest loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        loginRequestDTO.getEmail(),
-                        loginRequestDTO.getPassword()
+                        loginRequest.getEmail(),
+                        loginRequest.getPassword()
                 )
         );
 
@@ -88,12 +90,26 @@ public class UserServiceImpl implements UserService {
         User user = userRepo.findByEmail(
                         userDetails.getUsername()
                 )
-                .orElseThrow(() -> new UserNotFoundException("User not found"));
+                .orElseThrow(() ->
+                        new UserNotFoundException("User not found"));
 
+<<<<<<< HEAD
         log.info("User logged in successfully : {}", user.getEmail());
+=======
+
+        String token =
+                jwtService.generateToken(userDetails);
+
+        log.info("User logged in successfully. Username: {}", user.getEmail());
+>>>>>>> feature/spring-security-jwt-auth
 
         return LoginResponse.builder()
+                .Status(String.valueOf(HttpStatus.ACCEPTED.value()))
                 .message("User Login Successfully")
+<<<<<<< HEAD
+=======
+                .token(token)
+>>>>>>> feature/spring-security-jwt-auth
                 .build();
     }
 
