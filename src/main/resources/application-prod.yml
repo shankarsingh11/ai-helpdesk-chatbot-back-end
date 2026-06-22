@@ -1,0 +1,33 @@
+# Production Database Configuration
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/helpdesk_db_prod?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: ${MYSQL_USERNAME}
+    password: ${MYSQL_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  # Production JPA Configuration
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+  # Google OAuth2 Configuration
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            scope:
+              - openid
+              - email
+              - profile
+# Production Logging Configuration
+logging:
+  level:
+    root: WARN
+    com.helpdesk: WARN
+# JWT Configuration
+jwt:
+  secret-key: ${JWT_SECRET}
+  expiration: 86400000

@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
@@ -32,9 +33,10 @@ public class OAuth2AuthenticationSuccessHandler
         CustomOAuth2User oauthUser =
                 (CustomOAuth2User) authentication.getPrincipal();
 
+
         String token =
                 jwtService.generateToken(
-                        oauthUser.getEmail()
+                        (UserDetails) oauthUser
                 );
 
         String redirectUrl =
