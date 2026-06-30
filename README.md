@@ -1,6 +1,6 @@
 # 🤖 AI Helpdesk Chatbot System
 
-> A modern AI-powered Helpdesk Management System built with **Spring Boot**, **React**, **Spring Security**, **JWT Authentication**, **OAuth2**, **Spring AI**, and **MySQL**.
+> A modern AI-powered Helpdesk chatbot System built with **Spring Boot**, **React**, **Spring Security**, **JWT Authentication**, **OAuth2**, **Spring AI**, and **MySQL**.
 
 <p align="center">
 
@@ -26,10 +26,15 @@
 
 ---
 
-# Project Description
+## 🚀 Overview
 
-AI Helpdesk Chatbot is a full-stack application that allows users to create support tickets, communicate with an AI assistant, and manage helpdesk operations efficiently.
-The system includes secure JWT authentication, OAuth2 login, AI-powered chatbot responses, role-based authorization, ticket management, and REST APIs.
+AI Helpdesk Chatbot System is a full-stack web application designed to modernize customer support through artificial intelligence and secure authentication.
+
+The application enables users to register securely, authenticate using JWT or OAuth2 providers, create and manage support tickets, and interact with an AI-powered chatbot for instant assistance. Administrators can efficiently monitor users, manage tickets, and oversee the overall helpdesk workflow.
+
+The backend is developed using **Spring Boot** with a layered architecture following RESTful API best practices. Authentication and authorization are implemented using **Spring Security**, **JWT**, and **OAuth2 (Google & GitHub)**. The frontend is built with **React**, providing a responsive and modern user experience.
+
+This project follows clean architecture principles, making it scalable, maintainable, and production-ready.
 
 ## 📋 Table of Contents
 
