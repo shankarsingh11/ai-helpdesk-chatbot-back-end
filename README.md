@@ -1,12 +1,14 @@
 # 🤖 AI Helpdesk Chatbot System
 
-> A powerful, intelligent helpdesk support system powered by Spring Boot and AI, designed to automate ticket management, provide intelligent responses, and streamline customer support workflows.
+An AI-powered Helpdesk Chatbot System built using Spring Boot, Spring AI, React, JWT Authentication, OAuth2, and MySQL.
 
-[![Java Version](https://img.shields.io/badge/Java-21+-orange.svg)](https://download.oracle.com/java/21/latest/jdk-21_windows-x64_bin.msi (sha256))
-[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.0+-green.svg)](https://spring.io/projects/spring-boot)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)]()
-[![Maven](https://img.shields.io/badge/Maven-3.8+-red.svg)](https://maven.apache.org/)
+![Java](https://img.shields.io/badge/Java-21-orange)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.5-green)
+![React](https://img.shields.io/badge/React-19-blue)
+![MySQL](https://img.shields.io/badge/MySQL-8-blue)
+![JWT](https://img.shields.io/badge/JWT-Authentication-red)
+![License](https://img.shields.io/badge/License-MIT-yellow)
+![Build](https://img.shields.io/badge/Build-Passing-brightgreen)
 
 ## 📋 Table of Contents
 
@@ -32,7 +34,6 @@
 
 - **AI-Powered Ticket Generation** - Automatically create and categorize support tickets using AI
 - **Intelligent Ticket Routing** - Smart assignment of tickets to appropriate support agents
-- **Real-time Status Tracking** - Monitor ticket status and resolution progress
 - **Natural Language Processing** - Understand customer queries in natural language
 - **Automated Responses** - Generate context-aware responses using Spring AI
 - **Priority Management** - Automatic ticket prioritization based on urgency
