@@ -125,34 +125,154 @@ This project follows clean architecture principles, making it scalable, maintain
 
 * [❤️ Credits](#-credits)
 
+## ✨ Key Features
 
-## ✨ Features
+The **AI Helpdesk Chatbot System** is designed to simplify customer support by combining secure authentication, intelligent AI assistance, and efficient ticket management into a modern full-stack application.
 
-### Core Features
+---
 
-- **AI-Powered Ticket Generation** - Automatically create and categorize support tickets using AI
-- **Intelligent Ticket Routing** - Smart assignment of tickets to appropriate support agents
-- **Natural Language Processing** - Understand customer queries in natural language
-- **Automated Responses** - Generate context-aware responses using Spring AI
-- **Priority Management** - Automatic ticket prioritization based on urgency
-- **User Authentication** - Secure JWT-based authentication
-- **Role-Based Access Control** - Admin, Agent, and User roles with granular permissions
+## 🔐 Authentication & Authorization
 
-### 🔒 Security Features
+Secure and modern authentication mechanisms powered by **Spring Security**.
 
-- **BCrypt Password Encryption** - Enterprise-grade password security
-- **JWT Authentication** - Token-based stateless authentication
-- **Input Validation** - Comprehensive request validation
-- **SQL Injection Prevention** - Parameterized queries via JPA
-- **CORS Support** - Configurable cross-origin resource sharing
+* ✅ User Registration with input validation
+* ✅ Secure Login using JWT Authentication
+* ✅ Google OAuth2 Login
+* ✅ GitHub OAuth2 Login
+* ✅ Refresh Token support
+* ✅ Password encryption using BCrypt
+* ✅ Role-Based Access Control (RBAC)
+* ✅ Protected REST APIs
+* ✅ Session-independent authentication
+* ✅ Secure logout functionality
 
-### 📊 Data Management
+---
 
-- **Persistent Storage** - Database-backed ticket and user management
-- **Transaction Management** - Atomic operations with rollback support
-- **Custom Query Support** - Advanced filtering and search
-- **Pagination** - Efficient handling of large datasets
-- **Sorting & Filtering** - Flexible data retrieval
+## 👤 User Management
+
+Manage user accounts and profiles with ease.
+
+* 👤 User Registration & Profile Management
+* ✏️ Update User Information
+* 🔒 Change Password
+* 📧 Email-based account support *(Planned)*
+* 🛡️ Role management (User/Admin)
+
+---
+
+## 🎫 Helpdesk Ticket Management
+
+A complete support ticket lifecycle for users and administrators.
+
+* ➕ Create Support Tickets
+* 📋 View Ticket History
+* ✏️ Update Ticket Details
+* 🗑️ Delete Tickets
+* 📌 Track Ticket Status
+* 🔍 Search and Filter Tickets
+* 📂 Ticket Categorization *(Planned)*
+* 👨‍💼 Admin Ticket Management
+
+---
+
+## 🤖 AI-Powered Chatbot
+
+Integrated AI assistant to improve support efficiency.
+
+* 💬 Intelligent AI Conversations
+* ❓ Automated Question Answering
+* ⚡ Instant Responses
+* 📚 Context-Aware Assistance
+* 🧠 Spring AI Integration
+* 🔄 Extensible LLM Provider Support
+
+---
+
+## 🛡️ Security Features
+
+Enterprise-grade security practices.
+
+* 🔐 JWT Access Tokens
+* 🔄 Refresh Token Authentication
+* 🔒 BCrypt Password Hashing
+* 🧾 Request Validation
+* 🚫 Unauthorized Access Protection
+* 🔑 OAuth2 Authentication
+* 🧹 Global Exception Handling
+* 🛡️ Secure API Endpoints
+
+---
+
+## 📖 REST API
+
+Well-structured RESTful APIs following industry best practices.
+
+* 🌐 RESTful API Design
+* 📄 JSON Request/Response
+* 📚 Swagger/OpenAPI Documentation
+* ⚠️ Standardized Error Responses
+* ✅ Request Validation
+* 📦 DTO-Based Communication
+
+---
+
+## 🗄️ Database Management
+
+Reliable and scalable data persistence.
+
+* 🗃️ MySQL Database
+* ⚙️ Spring Data JPA
+* 🔄 Hibernate ORM
+* 🔍 Optimized Database Queries
+* 📑 Entity Relationships
+* 📈 Scalable Data Model
+
+---
+
+## 🎨 Modern Frontend
+
+Responsive and user-friendly interface built with React.
+
+* ⚛️ React-based SPA
+* 🎯 Responsive Design
+* 🔄 API Integration with Axios
+* 🔔 Toast Notifications
+* 📝 Form Validation
+* ⚡ Fast User Experience
+
+---
+
+## 🧩 Software Architecture
+
+Designed with maintainability and scalability in mind.
+
+* 📂 Layered Architecture
+* 🧹 Clean Code Principles
+* 🧱 Modular Components
+* 🔌 Service-Oriented Design
+* 📦 DTO & Mapper Pattern
+* 🛠️ Centralized Exception Handling
+* 🧪 Easy to Test and Extend
+
+---
+
+## 🚀 Future Enhancements
+
+Planned features for future releases.
+
+* 📧 Email Verification
+* 🔑 Forgot Password & Password Reset
+* 📎 File Attachments for Tickets
+* 🔔 Email Notifications
+* 📊 Admin Analytics Dashboard
+* 🤖 AI Ticket Classification
+* 🐳 Docker Support
+* ☁️ Cloud Deployment
+* 🔄 CI/CD Pipeline
+* 📱 Progressive Web App (PWA)
+
+---
+
 
 ---
 
