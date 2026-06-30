@@ -716,6 +716,219 @@ React UI
 
 ---
 
+# 📂 Project Structure
+
+The **AI Helpdesk Chatbot System** is organized into separate **backend** and **frontend** applications, following a clean and modular architecture. This separation allows each application to be developed, tested, and deployed independently.
+
+---
+
+## 📁 Root Directory
+
+```text
+ai-helpdesk-chatbot/
+│
+├── backend/                 # Spring Boot REST API
+├── frontend/                # React Application
+├── docs/                    # Project documentation
+├── screenshots/             # README images and GIFs
+├── .gitignore
+├── LICENSE
+└── README.md
+```
+
+---
+
+# ☕ Backend Structure (Spring Boot)
+
+```text
+backend/
+│
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/
+│   │   │       └── substring/
+│   │   │           └── helpdesk/
+│   │   │
+│   │   │               ├── config/
+│   │   │               ├── controller/
+│   │   │               ├── dto/
+│   │   │               │    ├── request/
+│   │   │               │    └── response/
+│   │   │               ├── entity/
+│   │   │               ├── repository/
+│   │   │               ├── service/
+│   │   │               │    └── impl/
+│   │   │               ├── mapper/
+│   │   │               ├── security/
+│   │   │               │    ├── jwt/
+│   │   │               │    ├── oauth2/
+│   │   │               │    ├── filter/
+│   │   │               │    └── handler/
+│   │   │               ├── exception/
+│   │   │               ├── validation/
+│   │   │               ├── util/
+│   │   │               └── HelpdeskApplication.java
+│   │   │
+│   │   └── resources/
+│   │       ├── application.properties
+│   │       ├── application-dev.properties
+│   │       ├── application-prod.properties
+│   │       ├── static/
+│   │       └── templates/
+│   │
+│   └── test/
+│
+├── pom.xml
+└── mvnw
+```
+
+---
+
+## ⚛️ Frontend Structure (React)
+
+```text
+frontend/
+│
+├── public/
+│
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   ├── common/
+│   │   ├── auth/
+│   │   ├── dashboard/
+│   │   ├── chatbot/
+│   │   ├── ticket/
+│   │   └── ui/
+│   │
+│   ├── pages/
+│   ├── layouts/
+│   ├── routes/
+│   ├── services/
+│   ├── hooks/
+│   ├── context/
+│   ├── schemas/
+│   ├── utils/
+│   ├── constants/
+│   ├── App.jsx
+│   └── main.jsx
+│
+├── package.json
+├── vite.config.js
+└── eslint.config.js
+```
+
+---
+
+# 📦 Backend Package Overview
+
+| Package      | Description                                                       |
+| ------------ | ----------------------------------------------------------------- |
+| `config`     | Spring Boot configuration, beans, CORS, Swagger, AI configuration |
+| `controller` | REST API endpoints that receive HTTP requests                     |
+| `dto`        | Request and response Data Transfer Objects                        |
+| `entity`     | JPA entity classes mapped to database tables                      |
+| `repository` | Spring Data JPA repositories for database operations              |
+| `service`    | Business logic and application services                           |
+| `mapper`     | Entity ↔ DTO conversion                                           |
+| `security`   | JWT, OAuth2, filters, handlers, and security configuration        |
+| `exception`  | Global exception handling and custom exceptions                   |
+| `validation` | Custom validators and validation logic                            |
+| `util`       | Utility classes and helper methods                                |
+
+---
+
+# 🎨 Frontend Folder Overview
+
+| Folder       | Description                                          |
+| ------------ | ---------------------------------------------------- |
+| `assets`     | Images, icons, fonts, and static resources           |
+| `components` | Reusable React UI components                         |
+| `pages`      | Application pages (Login, Register, Dashboard, etc.) |
+| `layouts`    | Shared layouts such as Navbar, Sidebar, Footer       |
+| `routes`     | Route configuration and protected routes             |
+| `services`   | Axios API services and backend communication         |
+| `hooks`      | Custom React hooks                                   |
+| `context`    | Global state management using React Context          |
+| `schemas`    | Zod validation schemas                               |
+| `utils`      | Helper and utility functions                         |
+| `constants`  | Application-wide constants and configuration         |
+
+---
+
+# 🏗️ Backend Layer Organization
+
+The backend follows a layered architecture to separate responsibilities.
+
+```text
+Controller
+     │
+     ▼
+Service
+     │
+     ▼
+Repository
+     │
+     ▼
+Database
+```
+
+### Controller Layer
+
+* Handles incoming HTTP requests
+* Validates request payloads
+* Returns standardized API responses
+
+### Service Layer
+
+* Contains business logic
+* Coordinates application workflows
+* Communicates with repositories and external services
+
+### Repository Layer
+
+* Performs CRUD operations
+* Executes database queries
+* Uses Spring Data JPA
+
+### Database Layer
+
+* Stores application data in MySQL
+* Managed using Hibernate ORM
+
+---
+
+# 📈 Benefits of This Structure
+
+* ✅ Clean and modular architecture
+* ✅ Easy to maintain and extend
+* ✅ Separation of concerns
+* ✅ Reusable components and services
+* ✅ Scalable for large applications
+* ✅ Simplifies testing and debugging
+* ✅ Follows Spring Boot and React best practices
+
+---
+
+## 📌 Technology Mapping
+
+| Layer          | Technology                          |
+| -------------- | ----------------------------------- |
+| Frontend       | React + Vite + Axios + Tailwind CSS |
+| Backend        | Spring Boot + Spring MVC            |
+| Security       | Spring Security + JWT + OAuth2      |
+| Business Logic | Service Layer                       |
+| Persistence    | Spring Data JPA + Hibernate         |
+| Database       | MySQL                               |
+| AI Integration | Spring AI                           |
+| Documentation  | Swagger / OpenAPI                   |
+| Build Tools    | Maven & npm                         |
+
+---
+
+> **💡 Note:** This project structure follows industry-standard practices used in enterprise Java applications, making the codebase modular, maintainable, and easy for new contributors to understand.
+
 
 ## 🚀 Getting Started
 
