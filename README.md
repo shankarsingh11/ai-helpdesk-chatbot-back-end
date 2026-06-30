@@ -1,14 +1,30 @@
 # 🤖 AI Helpdesk Chatbot System
 
-An AI-powered Helpdesk Chatbot System built using Spring Boot, Spring AI, React, JWT Authentication, OAuth2, and MySQL.
+> A modern AI-powered Helpdesk Management System built with **Spring Boot**, **React**, **Spring Security**, **JWT Authentication**, **OAuth2**, **Spring AI**, and **MySQL**.
 
-![Java](https://img.shields.io/badge/Java-21-orange)
-![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.5-green)
-![React](https://img.shields.io/badge/React-19-blue)
-![MySQL](https://img.shields.io/badge/MySQL-8-blue)
-![JWT](https://img.shields.io/badge/JWT-Authentication-red)
-![License](https://img.shields.io/badge/License-MIT-yellow)
-![Build](https://img.shields.io/badge/Build-Passing-brightgreen)
+<p align="center">
+
+![Java](https://img.shields.io/badge/Java-21-orange?style=for-the-badge&logo=openjdk)
+
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.5-6DB33F?style=for-the-badge&logo=springboot)
+
+![MySQL](https://img.shields.io/badge/MySQL-8-4479A1?style=for-the-badge&logo=mysql)
+
+![Spring Security](https://img.shields.io/badge/Spring_Security-6-6DB33F?style=for-the-badge)
+
+![JWT](https://img.shields.io/badge/JWT-Authentication-black?style=for-the-badge)
+
+![OAuth2](https://img.shields.io/badge/OAuth2-Google%20%7C%20GitHub-blue?style=for-the-badge)
+
+![Spring AI](https://img.shields.io/badge/Spring_AI-LLM-success?style=for-the-badge)
+
+![Maven](https://img.shields.io/badge/Maven-3.9-red?style=for-the-badge&logo=apachemaven)
+
+![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
+
+</p>
+
+---
 
 # Project Description
 
