@@ -402,51 +402,320 @@ The AI Helpdesk Chatbot System is built using a modern full-stack technology sta
 
 ---
 
-## 🏗 Architecture
+# 🏗️ System Architecture
 
-### Layered Architecture Pattern
+The **AI Helpdesk Chatbot System** follows a **layered architecture** that separates responsibilities into independent modules. This approach improves maintainability, scalability, testability, and code readability.
 
-```
-┌─────────────────────────────────────────┐
-│          CLIENT (Web/Mobile)            │
-└──────────────────┬──────────────────────┘
-                   │
-┌──────────────────▼──────────────────────┐
-│      REST Controllers Layer              │
-│   (Handle HTTP Requests/Responses)      │
-└──────────────────┬──────────────────────┘
-                   │
-┌──────────────────▼──────────────────────┐
-│      Service Layer                       │
-│ (Business Logic, Validation, AI Tool)   │
-└──────────────────┬──────────────────────┘
-                   │
-┌──────────────────▼──────────────────────┐
-│    Repository Layer (Data Access)        │
-│     (JPA, Custom Queries)                │
-└──────────────────┬──────────────────────┘
-                   │
-┌──────────────────▼──────────────────────┐
-│      Database Layer                      │
-│    (MySQL/PostgreSQL)                    │
-└─────────────────────────────────────────┘
-```
+---
 
-### Component Interaction
+# 📐 High-Level Architecture
 
-```
-TicketController
-       ↓
-TicketService → TicketValidator → TicketDatabaseTool (AI)
-       ↓
-TicketRepository
-       ↓
-Ticket Entity
-       ↓
-Database
+```text
+                              +----------------------+
+                              |      End Users       |
+                              +----------+-----------+
+                                         |
+                                         |
+                                  HTTP / HTTPS
+                                         |
+                                         ▼
++-------------------------------------------------------------+
+|                     React Frontend (Vite)                   |
+|-------------------------------------------------------------|
+| Login | Register | Dashboard | Tickets | AI Chat | Profile |
++----------------------------+--------------------------------+
+                             |
+                    REST API (JSON)
+                             |
+                             ▼
++-------------------------------------------------------------+
+|                 Spring Boot REST Backend                    |
+|-------------------------------------------------------------|
+| Controllers → Services → Repositories → Database            |
++----------------------------+--------------------------------+
+                             |
+         +-------------------+-------------------+
+         |                                       |
+         ▼                                       ▼
++--------------------------+         +--------------------------+
+| Spring Security          |         |      Spring AI           |
+|--------------------------|         |--------------------------|
+| JWT Authentication       |         | AI Chat Service          |
+| OAuth2 Login             |         | Prompt Processing        |
+| Role-Based Authorization |         | LLM Integration          |
++--------------------------+         +--------------------------+
+         |                                       |
+         +-------------------+-------------------+
+                             |
+                             ▼
+                   +----------------------+
+                   |      MySQL Database  |
+                   +----------------------+
 ```
 
 ---
+
+# 🧱 Layered Architecture
+
+The backend is organized using a clean layered architecture where each layer has a specific responsibility.
+
+```text
+Client (React)
+        │
+        ▼
+REST Controller
+        │
+        ▼
+Service Layer
+        │
+        ▼
+Repository Layer
+        │
+        ▼
+MySQL Database
+```
+
+### Presentation Layer
+
+Responsible for interacting with users.
+
+**Technologies**
+
+* React
+* React Router
+* Axios
+* Tailwind CSS
+
+Responsibilities
+
+* User Interface
+* Form Validation
+* API Requests
+* Authentication Screens
+* Dashboard
+* Ticket Management
+* AI Chat Interface
+
+---
+
+### Controller Layer
+
+Handles incoming HTTP requests.
+
+Responsibilities
+
+* Receive client requests
+* Validate request payloads
+* Call business services
+* Return REST responses
+* Handle HTTP status codes
+
+---
+
+### Service Layer
+
+Contains all business logic.
+
+Responsibilities
+
+* User registration
+* Login
+* JWT generation
+* OAuth2 user processing
+* Ticket management
+* AI chatbot integration
+* Profile management
+
+---
+
+### Repository Layer
+
+Responsible for database communication.
+
+Responsibilities
+
+* CRUD Operations
+* Custom Queries
+* Entity Persistence
+* Database Transactions
+
+---
+
+### Database Layer
+
+Stores all application data.
+
+Main entities include:
+
+* Users
+* Roles
+* Refresh Tokens
+* Support Tickets
+* AI Conversations *(Planned)*
+
+---
+
+# 🔄 Request Flow
+
+Every request follows the same lifecycle.
+
+```text
+React UI
+     │
+     ▼
+Axios Request
+     │
+     ▼
+REST Controller
+     │
+     ▼
+Service Layer
+     │
+     ▼
+Repository
+     │
+     ▼
+MySQL Database
+     │
+     ▼
+Repository
+     │
+     ▼
+Service
+     │
+     ▼
+Controller
+     │
+     ▼
+JSON Response
+     │
+     ▼
+React UI
+```
+
+---
+
+# 🔐 Authentication Architecture
+
+The application uses **JWT-based stateless authentication** together with **OAuth2** social login.
+
+```text
+User Login
+      │
+      ▼
+Authentication Request
+      │
+      ▼
+Spring Security
+      │
+      ▼
+Authentication Manager
+      │
+      ▼
+User Verification
+      │
+      ▼
+JWT Token Generation
+      │
+      ▼
+Token Returned to React
+      │
+      ▼
+Stored Securely
+      │
+      ▼
+Authorization Header
+      │
+      ▼
+Protected REST APIs
+```
+
+---
+
+# 🌐 OAuth2 Authentication Flow
+
+Users can authenticate using Google or GitHub.
+
+```text
+React
+   │
+   ▼
+Google / GitHub Login
+   │
+   ▼
+OAuth2 Provider
+   │
+   ▼
+User Authentication
+   │
+   ▼
+Spring Security OAuth2
+   │
+   ▼
+OAuth2UserService
+   │
+   ▼
+Create or Update User
+   │
+   ▼
+Generate JWT
+   │
+   ▼
+Return Token
+   │
+   ▼
+React Dashboard
+```
+
+---
+
+# 🤖 AI Chatbot Architecture
+
+The AI module is designed to be modular and provider-independent.
+
+```text
+User Message
+      │
+      ▼
+React Chat Interface
+      │
+      ▼
+Spring Boot REST API
+      │
+      ▼
+AI Chat Service
+      │
+      ▼
+Spring AI
+      │
+      ▼
+LLM Provider
+      │
+      ▼
+AI Response
+      │
+      ▼
+React UI
+```
+
+---
+
+# 📦 Architectural Highlights
+
+* 🧩 Layered Architecture
+* 🔐 Stateless JWT Authentication
+* 🌐 OAuth2 Social Login (Google & GitHub)
+* 🤖 AI Integration using Spring AI
+* 📄 RESTful API Design
+* 🗄️ Repository Pattern with Spring Data JPA
+* 🔄 DTO & Mapper Pattern
+* 🛡️ Global Exception Handling
+* ⚙️ Dependency Injection
+* 📈 Scalable and Maintainable Codebase
+* 🚀 Production-Ready Design
+
+---
+
 
 ## 🚀 Getting Started
 
