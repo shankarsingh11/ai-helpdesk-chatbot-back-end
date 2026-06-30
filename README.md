@@ -10,6 +10,11 @@ An AI-powered Helpdesk Chatbot System built using Spring Boot, Spring AI, React,
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 ![Build](https://img.shields.io/badge/Build-Passing-brightgreen)
 
+# Project Description
+
+AI Helpdesk Chatbot is a full-stack application that allows users to create support tickets, communicate with an AI assistant, and manage helpdesk operations efficiently.
+The system includes secure JWT authentication, OAuth2 login, AI-powered chatbot responses, role-based authorization, ticket management, and REST APIs.
+
 ## 📋 Table of Contents
 
 - [Features](#features)
@@ -22,7 +27,6 @@ An AI-powered Helpdesk Chatbot System built using Spring Boot, Spring AI, React,
 - [Project Structure](#project-structure)
 - [Usage Examples](#usage-examples)
 - [Database Schema](#database-schema)
-- [Contributing](#contributing)
 - [License](#license)
 - [Support](#support)
 
