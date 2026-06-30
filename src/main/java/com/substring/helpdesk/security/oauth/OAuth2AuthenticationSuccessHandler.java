@@ -35,8 +35,7 @@ public class OAuth2AuthenticationSuccessHandler
 
 
         String token =
-                jwtService.generateToken(
-                        (UserDetails) oauthUser
+                jwtService.generateToken(oauthUser.getEmail()
                 );
 
         String redirectUrl =

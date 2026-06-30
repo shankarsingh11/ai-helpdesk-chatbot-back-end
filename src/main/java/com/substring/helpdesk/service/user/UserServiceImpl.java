@@ -97,13 +97,13 @@ public class UserServiceImpl implements UserService {
         log.info("User logged in successfully : {}", user.getEmail());
 
         String token =
-                jwtService.generateToken(userDetails);
+                jwtService.generateToken(user.getEmail());
 
         log.info("User logged in successfully. Email: {}", user.getEmail());
 
 
         return LoginResponse.builder()
-                .Status(String.valueOf(HttpStatus.ACCEPTED.value()))
+                .status(String.valueOf(HttpStatus.ACCEPTED.value()))
                 .message("User Login Successfully")
                 .token(token)
                 .build();

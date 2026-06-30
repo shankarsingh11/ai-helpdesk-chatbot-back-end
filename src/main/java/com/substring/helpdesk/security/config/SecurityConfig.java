@@ -45,9 +45,10 @@ public class SecurityConfig {
  @Bean
  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
+     log.info("========== SECURITY CONFIG LOADED ==========");
+
              http
                      . csrf(csrf-> csrf.disable())
-
                      .exceptionHandling( ex ->
                                 ex
                                      .authenticationEntryPoint(jwtAuthenticationEntryPoint)

@@ -8,7 +8,7 @@ spring:
     name: help-desk-backend
   # Active Profile
   profiles:
-    active: testing
+    active: dev
   # JPA Common Configuration
   jpa:
     open-in-view: false
@@ -30,15 +30,24 @@ spring:
           jdbc:
             initialize-schema: always
   # OAuth2 Google Configuration
-  security:
-    oauth2:
-      client:
-        registration:
-          google:
-            scope:
-              - openid
-              - email
-              - profile
+  spring:
+    security:
+      oauth2:
+        client:
+          registration:
+            google:
+              client-id: ${GOOGLE_CLIENT_ID}
+              client-secret: ${GOOGLE_CLIENT_SECRET}
+              scope:
+                - openid
+                - email
+                - profile
+            github:
+              client-id: ${GITHUB_CLIENT_ID}
+              client-secret: ${GITHUB_CLIENT_SECRET}
+              scope:
+                - read:user
+                - user:email
 # Logging
 logging:
   level:

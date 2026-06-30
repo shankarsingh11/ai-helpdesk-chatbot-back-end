@@ -1,18 +1,18 @@
 package com.substring.helpdesk.dto.response;
 
 import com.substring.helpdesk.entity.enm.AuthProvider;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class OAuthLoginResponse {
 
-    private String accessToken;
-
-    private String refreshToken;
-
-    private String tokenType;
+    private String token;
 
     private Integer userId;
 
@@ -22,6 +22,7 @@ public class OAuthLoginResponse {
 
     private String profilePicture;
 
-    private AuthProvider provider;
+    private String provider;
 
+    private String message;
 }
