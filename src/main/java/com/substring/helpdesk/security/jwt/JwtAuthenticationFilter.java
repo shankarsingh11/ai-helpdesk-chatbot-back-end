@@ -32,6 +32,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
              FilterChain filterChain)
             throws ServletException, IOException {
 
+        log.info("JWT FILTER -> {} {}",
+                request.getMethod(),
+                request.getRequestURI());
+
         String authHeader = request.getHeader("Authorization");
 
         if (authHeader == null
@@ -45,7 +49,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
             String token = authHeader.substring(7);
 
-            String email = jwtService.extractUsername(token);
+            String email = jwtService.extractEmail(token);
 
             // Authenticate only if user is not already authenticated
             if (email != null &&

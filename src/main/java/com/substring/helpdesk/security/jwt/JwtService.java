@@ -2,6 +2,7 @@ package com.substring.helpdesk.security.jwt;
 
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -23,50 +24,63 @@ public class JwtService {
     @Value("${jwt.expiration}")
     private long jwtExpiration;
 
-    // Generate Token
-    public  String generateToken(UserDetails userDetails){
 
+    /**
+     * Generate JWT using user email.
+     */
+    public String generateToken(String email) {
+
+        log.debug("Generating JWT for email: {}", email);
         return Jwts.builder()
-                .subject(userDetails.getUsername())
+                .subject(email)
                 .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis()+jwtExpiration))
+                .expiration(new Date(System.currentTimeMillis() + jwtExpiration))
                 .signWith(getSignInKey())
                 .compact();
-
     }
 
-    // Extract Username
-    public String extractUsername(String token) {
-
-        return extractAllClaims(token)
-                .getSubject();
+    /**
+     * Extract email from JWT.
+     */
+    public String extractEmail(String token) {
+        return extractAllClaims(token).getSubject();
     }
 
-    // Validate Token
-    public boolean isTokenValid(
-            String token,
-            UserDetails userDetails) {
+    /**
+     * Validate JWT.
+     */
+    public boolean isTokenValid(String token, UserDetails userDetails) {
+
         try {
-            String username = extractUsername(token);
 
-            return username != null
-                    && username.equals(userDetails.getUsername())
+            String email = extractEmail(token);
+
+            return email != null
+                    && email.equals(userDetails.getUsername())
                     && !isTokenExpired(token);
 
-        } catch (Exception e) {
-            log.error("Invalid JWT token: {}", e.getMessage());
+        } catch (JwtException | IllegalArgumentException ex) {
+
+            log.error("Invalid JWT: {}", ex.getMessage());
+
             return false;
         }
     }
 
-    // check expiration
+
+    /**
+     * Check whether JWT is expired.
+     */
     private boolean isTokenExpired(String token) {
+
         return extractAllClaims(token)
                 .getExpiration()
                 .before(new Date());
     }
 
-
+    /**
+     * Extract all JWT claims.
+     */
     private Claims extractAllClaims(String token) {
 
         return Jwts.parser()
@@ -76,23 +90,28 @@ public class JwtService {
                 .getPayload();
     }
 
-    // Extract Bearer Token
-    public String extractToken(String header) {
+    /**
+     * Extract Bearer token from Authorization header.
+     */
+    public String extractToken(String authorizationHeader) {
 
-        if (header == null || header.isBlank()) {
+        if (authorizationHeader == null || authorizationHeader.isBlank()) {
             return null;
         }
 
-        if (header != null && header.startsWith("Bearer ")) {
-            return header.substring(7);
+        if (authorizationHeader.startsWith("Bearer ")) {
+            return authorizationHeader.substring(7);
         }
+
         return null;
     }
 
 
-    // Secret key
+    /**
+     * Build signing key.
+     */
     private SecretKey getSignInKey() {
-        byte[] keyBytes= Decoders.BASE64.decode(secretKey);
+        byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
