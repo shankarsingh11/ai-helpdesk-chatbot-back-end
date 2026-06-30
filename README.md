@@ -51,22 +51,80 @@ This project follows clean architecture principles, making it scalable, maintain
 - 🧩 Layered Architecture
 - ✅ Enterprise-Level Coding Practices
 
-## 📋 Table of Contents
+## 📑 Table of Contents
 
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Architecture](#architecture)
-- [Getting Started](#getting-started)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [API Documentation](#api-documentation)
-- [Project Structure](#project-structure)
-- [Usage Examples](#usage-examples)
-- [Database Schema](#database-schema)
-- [License](#license)
-- [Support](#support)
+* [🚀 Overview](#-overview)
+* [✨ Key Features](#-key-features)
+* [🛠️ Technology Stack](#️-technology-stack)
+* [🏗️ System Architecture](#️-system-architecture)
+* [📂 Project Structure](#-project-structure)
 
----
+### 🚀 Getting Started
+
+* [📋 Prerequisites](#-prerequisites)
+* [⚙️ Installation](#️-installation)
+* [🔧 Environment Configuration](#-environment-configuration)
+* [▶️ Running the Application](#️-running-the-application)
+
+### 🔐 Authentication & Security
+
+* [🔑 Authentication Flow](#-authentication-flow)
+* [🛡️ Security Features](#️-security-features)
+
+### 📚 API Documentation
+
+* [📖 Swagger / OpenAPI](#-swagger--openapi)
+* [📡 REST API Endpoints](#-rest-api-endpoints)
+
+### 🤖 AI Module
+
+* [🧠 AI Chatbot Workflow](#-ai-chatbot-workflow)
+* [💬 AI Features](#-ai-features)
+
+### 🗄️ Database
+
+* [🗃️ Database Schema](#️-database-schema)
+* [📝 Entity Relationship Diagram (ERD)](#-entity-relationship-diagram-erd)
+
+### 📸 Screenshots
+
+* [🔐 Authentication](#-authentication)
+* [🏠 Dashboard](#-dashboard)
+* [🎫 Ticket Management](#-ticket-management)
+* [🤖 AI Chatbot](#-ai-chatbot)
+
+### 🧪 Testing
+
+* [✅ Unit Testing](#-unit-testing)
+* [🔄 Integration Testing](#-integration-testing)
+
+### 🚀 Deployment
+
+* [🐳 Docker](#-docker)
+* [☁️ Production Deployment](#️-production-deployment)
+
+### 📈 Future Scope
+
+* [🛣️ Roadmap](#️-roadmap)
+
+### 🤝 Community
+
+* [🤝 Contributing](#-contributing)
+* [🐞 Known Issues](#-known-issues)
+* [❓ FAQ](#-faq)
+
+### 📄 License
+
+* [📜 License](#-license)
+
+### 👨‍💻 Author
+
+* [👤 About the Author](#-about-the-author)
+
+### 🙏 Acknowledgements
+
+* [❤️ Credits](#-credits)
+
 
 ## ✨ Features
 
