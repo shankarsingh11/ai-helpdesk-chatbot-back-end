@@ -273,42 +273,134 @@ Planned features for future releases.
 
 ---
 
+## 🛠️ Technology Stack
+
+The AI Helpdesk Chatbot System is built using a modern full-stack technology stack that emphasizes scalability, security, maintainability, and performance.
 
 ---
 
-## 🛠 Tech Stack
+## Backend
 
-### Backend Framework
-- **Spring Boot 3.0+** - Modern, production-ready framework
-- **Spring Web (MVC)** - REST API development
-- **Spring Data JPA** - Object-relational mapping and database access
-- **Spring Security & OAuth2** - Authentication and authorization
-- **Spring AI** - AI/ML integration and tool management
+| Technology      | Version | Purpose                                    |
+| --------------- | ------- | ------------------------------------------ |
+| Java            | 21      | Core programming language                  |
+| Spring Boot     | 3.x     | Backend application framework              |
+| Spring Security | 6.x     | Authentication and authorization           |
+| Spring Data JPA | 3.x     | Database access and ORM                    |
+| Hibernate       | 6.x     | ORM implementation                         |
+| Spring AI       | Latest  | AI chatbot integration                     |
+| Maven           | 3.9+    | Dependency management and build automation |
 
-### Database
-- **MySQL / PostgreSQL** - Primary relational database
+---
 
-### Security & Validation
-- **Spring Security** - Authentication and authorization
-- **JWT (JSON Web Tokens)** - Stateless authentication
-- **Jakarta Validation API** - Request validation
-- **BCrypt** - Password encryption
+## Frontend
 
-### Utilities & Productivity
-- **Lombok** - Reduce boilerplate code
-- **MapStruct** (Optional) - Entity-DTO mapping
-- **SLF4J + Logback** - Logging framework
-- **Maven** - Dependency management and build tool
+| Technology        | Version | Purpose                       |
+| ----------------- | ------- | ----------------------------- |
+| React             | 19      | User interface development    |
+| JavaScript (ES6+) | Latest  | Frontend programming language |
+| React Router      | 7.x     | Client-side routing           |
+| Axios             | Latest  | HTTP client for REST APIs     |
+| Tailwind CSS      | Latest  | Utility-first CSS framework   |
+| Vite              | Latest  | Fast frontend build tool      |
 
-### Development Tools
-- **Spring Boot DevTools** - Fast application restarts
-- **Swagger/Springdoc OpenAPI** - API documentation
-- **Postman** - API Testing
+---
 
-### Testing (Recommended)
-- **JUnit 5** - Unit testing framework
-- **Mockito** - Mocking library
-- **Spring Boot Test** - Integration testing
+## Database
+
+| Technology      | Purpose                   |
+| --------------- | ------------------------- |
+| MySQL 8         | Relational database       |
+| Hibernate ORM   | Object-relational mapping |
+| Spring Data JPA | Repository abstraction    |
+
+---
+
+## Authentication & Security
+
+| Technology           | Purpose                  |
+| -------------------- | ------------------------ |
+| Spring Security      | Application security     |
+| JWT (JSON Web Token) | Stateless authentication |
+| OAuth2               | Social login integration |
+| Google OAuth2        | Google authentication    |
+| GitHub OAuth2        | GitHub authentication    |
+| BCrypt               | Password hashing         |
+
+---
+
+## AI Integration
+
+| Technology      | Purpose                       |
+| --------------- | ----------------------------- |
+| Spring AI       | AI framework                  |
+| LLM Provider    | Natural language processing   |
+| AI Chat Service | Intelligent chatbot responses |
+
+> **Note:** The AI layer is designed to support multiple LLM providers, making it easy to switch or extend integrations in the future.
+
+---
+
+## API & Documentation
+
+| Technology | Purpose                                    |
+| ---------- | ------------------------------------------ |
+| REST API   | Communication between frontend and backend |
+| OpenAPI 3  | API specification                          |
+| Swagger UI | Interactive API documentation              |
+| JSON       | Data exchange format                       |
+
+---
+
+## Development Tools
+
+| Tool               | Purpose                               |
+| ------------------ | ------------------------------------- |
+| IntelliJ IDEA      | Backend development                   |
+| Visual Studio Code | Frontend development                  |
+| Postman            | API testing                           |
+| Git                | Version control                       |
+| GitHub             | Source code hosting and collaboration |
+
+---
+
+## Build & Dependency Management
+
+| Tool  | Purpose                                 |
+| ----- | --------------------------------------- |
+| Maven | Backend dependency management           |
+| npm   | Frontend package management             |
+| Vite  | Frontend development server and bundler |
+
+---
+
+## Architecture
+
+| Layer              | Technology                     |
+| ------------------ | ------------------------------ |
+| Presentation Layer | React                          |
+| API Layer          | Spring Boot REST Controllers   |
+| Business Layer     | Service Classes                |
+| Security Layer     | Spring Security + JWT + OAuth2 |
+| Persistence Layer  | Spring Data JPA + Hibernate    |
+| Database Layer     | MySQL                          |
+| AI Layer           | Spring AI                      |
+
+---
+
+## Technology Highlights
+
+* ☕ Java 21 with modern language features
+* 🌱 Spring Boot 3.x for rapid backend development
+* 🔐 Spring Security with JWT and OAuth2 authentication
+* ⚛️ React 19 for building a responsive single-page application
+* 🤖 Spring AI for intelligent chatbot capabilities
+* 🗄️ MySQL with Hibernate ORM for reliable data persistence
+* 📚 Swagger/OpenAPI for interactive REST API documentation
+* 🚀 Maven and Vite for efficient build automation
+* 🧩 Layered architecture following enterprise development best practices
+
+---
 
 ## 🏗 Architecture
 
