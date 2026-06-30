@@ -36,6 +36,21 @@ The backend is developed using **Spring Boot** with a layered architecture follo
 
 This project follows clean architecture principles, making it scalable, maintainable, and production-ready.
 
+### ✨ Key Highlights
+
+- 🔐 Secure JWT Authentication
+- 🌐 OAuth2 Login (Google & GitHub)
+- 🤖 AI-powered Helpdesk Chatbot
+- 🎫 Helpdesk Ticket Management
+- 👤 Role-Based Access Control (RBAC)
+- 📄 RESTful APIs
+- 📚 Swagger/OpenAPI Documentation
+- 🗄️ MySQL Database Integration
+- 🛡️ Spring Security
+- ⚡ Modern React Frontend
+- 🧩 Layered Architecture
+- ✅ Enterprise-Level Coding Practices
+
 ## 📋 Table of Contents
 
 - [Features](#features)
