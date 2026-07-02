@@ -2,21 +2,22 @@
 server:
   servlet:
     context-path: /helpdesk
-# Application Name
+
+# Spring Configuration
 spring:
   application:
     name: help-desk-backend
-  # Active Profile
+#Active Profile
   profiles:
     active: dev
-  # JPA Common Configuration
+# JPA
   jpa:
     open-in-view: false
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: true
-  # Spring AI Configuration
+#Ollama model configure
   ai:
     ollama:
       base-url: http://localhost:11434
@@ -24,30 +25,40 @@ spring:
         options:
           model: llama3.2:latest
           temperature: 0.7
+#Chat memory configure
     chat:
       memory:
         repository:
           jdbc:
             initialize-schema: always
-  # OAuth2 Google Configuration
-  spring:
-    security:
-      oauth2:
-        client:
-          registration:
-            google:
-              client-id: ${GOOGLE_CLIENT_ID}
-              client-secret: ${GOOGLE_CLIENT_SECRET}
-              scope:
-                - openid
-                - email
-                - profile
-            github:
-              client-id: ${GITHUB_CLIENT_ID}
-              client-secret: ${GITHUB_CLIENT_SECRET}
-              scope:
-                - read:user
-                - user:email
+# OAuth2 Google & GitHub configure
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            scope:
+              - openid
+              - email
+              - profile
+          github:
+            client-id: ${GITHUB_CLIENT_ID}
+            client-secret: ${GITHUB_CLIENT_SECRET}
+            scope:
+              - read:user
+              - user:email
+# Swagger Configuration
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui
+    operations-sorter: method
+    tags-sorter: alpha
+    display-request-duration: true
+    try-it-out-enabled: true
 # Logging
 logging:
   level:
@@ -57,14 +68,14 @@ logging:
           chat:
             client:
               advisor: DEBUG
-# Custom Application Properties
+# Custom Properties
 another:
   student: true
-# AI Memory Configuration
+# AI Memory
 ai:
   memory:
     max-messages: 20
-# JWT Configuration
+# JWT
 jwt:
   secret-key: ${JWT_SECRET}
   expiration: 86400000

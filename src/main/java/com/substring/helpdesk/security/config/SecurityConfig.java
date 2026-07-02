@@ -57,12 +57,21 @@ public class SecurityConfig {
                      .sessionManagement(session->
                              session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                      .authorizeHttpRequests(auth->
-                             auth.requestMatchers(
-                                     // public api
+                             auth
+                                     // public auth api
+                                     .requestMatchers(
+                                           // public api
                                              "/api/v1/auth/**",
                                              "/oauth2/**",
                                              "/login/oauth2/**"
                              ).permitAll()
+                                     //swagger
+                                     .requestMatchers(
+                                             "/swagger-ui/**",
+                                             "/swagger-ui.html",
+                                             "/api-docs/**",
+                                             "/v3/api-docs/**"
+                                     ).permitAll()
                                      .anyRequest().authenticated())
 
                      .oauth2Login(oauth ->
