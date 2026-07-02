@@ -54,7 +54,6 @@
             <artifactId>jjwt-api</artifactId>
             <version>0.13.0</version>
         </dependency>
-
         <!-- Implementation (runtime only) -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
@@ -62,7 +61,6 @@
             <version>0.13.0</version>
             <scope>runtime</scope>
         </dependency>
-
         <!-- JSON parser (Jackson) -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
@@ -70,7 +68,6 @@
             <version>0.13.0</version>
             <scope>runtime</scope>
         </dependency>
-
         <!--Ollama model-->
         <dependency>
             <groupId>org.springframework.ai</groupId>
@@ -120,7 +117,12 @@
             <artifactId>google-oauth-client</artifactId>
             <version>1.39.0</version>
         </dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.8.17</version>
+        </dependency>
+    </dependencies>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
