@@ -120,9 +120,15 @@
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+<<<<<<< HEAD
             <version>2.8.17</version>
         </dependency>
     </dependencies>
+=======
+            <version>2.8.9</version>
+        </dependency>
+	</dependencies>
+>>>>>>> 7ba51ed (swagger-ui updated)
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
