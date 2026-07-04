@@ -410,15 +410,15 @@ The **AI Helpdesk Chatbot System** follows a **layered architecture** that separ
 
 # 📐 High-Level Architecture
 
-```
-                              +----------------------+
-                              |      End Users       |
-                              +----------+-----------+
-                                         |
-                                         |
-                                  HTTP / HTTPS
-                                         |
-                                         ▼
+```text
+                        +----------------------+
+                        |      End Users       |
+                        +----------+-----------+
+                                   |
+                                   |
+                              HTTP / HTTPS
+                                   |
+                                   ▼
 +-------------------------------------------------------------+
 |                     React Frontend (Vite)                   |
 |-------------------------------------------------------------|
@@ -459,7 +459,7 @@ The **AI Helpdesk Chatbot System** follows a **layered architecture** that separ
 
 The backend is organized using a clean layered architecture where each layer has a specific responsibility.
 
-```
+```text
 Client (React)
         │
         ▼
