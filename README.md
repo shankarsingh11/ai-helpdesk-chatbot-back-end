@@ -1,141 +1,934 @@
 # 🤖 AI Helpdesk Chatbot System
 
-> A powerful, intelligent helpdesk support system powered by Spring Boot and AI, designed to automate ticket management, provide intelligent responses, and streamline customer support workflows.
+> A modern AI-powered Helpdesk chatbot System built with **Spring Boot**, **React**, **Spring Security**, **JWT Authentication**, **OAuth2**, **Spring AI**, and **MySQL**.
 
-[![Java Version](https://img.shields.io/badge/Java-21+-orange.svg)](https://download.oracle.com/java/21/latest/jdk-21_windows-x64_bin.msi (sha256))
-[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.0+-green.svg)](https://spring.io/projects/spring-boot)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)]()
-[![Maven](https://img.shields.io/badge/Maven-3.8+-red.svg)](https://maven.apache.org/)
+<p align="center">
 
-## 📋 Table of Contents
+![Java](https://img.shields.io/badge/Java-21-orange?style=for-the-badge&logo=openjdk)
 
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Architecture](#architecture)
-- [Getting Started](#getting-started)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [API Documentation](#api-documentation)
-- [Project Structure](#project-structure)
-- [Usage Examples](#usage-examples)
-- [Database Schema](#database-schema)
-- [Contributing](#contributing)
-- [License](#license)
-- [Support](#support)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.5-6DB33F?style=for-the-badge&logo=springboot)
 
----
+![MySQL](https://img.shields.io/badge/MySQL-8-4479A1?style=for-the-badge&logo=mysql)
 
-## ✨ Features
+![Spring Security](https://img.shields.io/badge/Spring_Security-6-6DB33F?style=for-the-badge)
 
-### Core Features
+![JWT](https://img.shields.io/badge/JWT-Authentication-black?style=for-the-badge)
 
-- **AI-Powered Ticket Generation** - Automatically create and categorize support tickets using AI
-- **Intelligent Ticket Routing** - Smart assignment of tickets to appropriate support agents
-- **Real-time Status Tracking** - Monitor ticket status and resolution progress
-- **Natural Language Processing** - Understand customer queries in natural language
-- **Automated Responses** - Generate context-aware responses using Spring AI
-- **Priority Management** - Automatic ticket prioritization based on urgency
-- **User Authentication** - Secure JWT-based authentication
-- **Role-Based Access Control** - Admin, Agent, and User roles with granular permissions
+![OAuth2](https://img.shields.io/badge/OAuth2-Google%20%7C%20GitHub-blue?style=for-the-badge)
 
-### 🔒 Security Features
+![Spring AI](https://img.shields.io/badge/Spring_AI-LLM-success?style=for-the-badge)
 
-- **BCrypt Password Encryption** - Enterprise-grade password security
-- **JWT Authentication** - Token-based stateless authentication
-- **Input Validation** - Comprehensive request validation
-- **SQL Injection Prevention** - Parameterized queries via JPA
-- **CORS Support** - Configurable cross-origin resource sharing
+![Maven](https://img.shields.io/badge/Maven-3.9-red?style=for-the-badge&logo=apachemaven)
 
-### 📊 Data Management
+![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
-- **Persistent Storage** - Database-backed ticket and user management
-- **Transaction Management** - Atomic operations with rollback support
-- **Custom Query Support** - Advanced filtering and search
-- **Pagination** - Efficient handling of large datasets
-- **Sorting & Filtering** - Flexible data retrieval
+</p>
 
 ---
 
-## 🛠 Tech Stack
+## 🚀 Overview
 
-### Backend Framework
-- **Spring Boot 3.0+** - Modern, production-ready framework
-- **Spring Web (MVC)** - REST API development
-- **Spring Data JPA** - Object-relational mapping and database access
-- **Spring Security & OAuth2** - Authentication and authorization
-- **Spring AI** - AI/ML integration and tool management
+AI Helpdesk Chatbot System is a full-stack web application designed to modernize customer support through artificial intelligence and secure authentication.
 
-### Database
-- **MySQL / PostgreSQL** - Primary relational database
+The application enables users to register securely, authenticate using JWT or OAuth2 providers, create and manage support tickets, and interact with an AI-powered chatbot for instant assistance. Administrators can efficiently monitor users, manage tickets, and oversee the overall helpdesk workflow.
 
-### Security & Validation
-- **Spring Security** - Authentication and authorization
-- **JWT (JSON Web Tokens)** - Stateless authentication
-- **Jakarta Validation API** - Request validation
-- **BCrypt** - Password encryption
+The backend is developed using **Spring Boot** with a layered architecture following RESTful API best practices. Authentication and authorization are implemented using **Spring Security**, **JWT**, and **OAuth2 (Google & GitHub)**. The frontend is built with **React**, providing a responsive and modern user experience.
 
-### Utilities & Productivity
-- **Lombok** - Reduce boilerplate code
-- **MapStruct** (Optional) - Entity-DTO mapping
-- **SLF4J + Logback** - Logging framework
-- **Maven** - Dependency management and build tool
+This project follows clean architecture principles, making it scalable, maintainable, and production-ready.
 
-### Development Tools
-- **Spring Boot DevTools** - Fast application restarts
-- **Swagger/Springdoc OpenAPI** - API documentation
-- **Postman** - API Testing
+### ✨ Key Highlights
 
-### Testing (Recommended)
-- **JUnit 5** - Unit testing framework
-- **Mockito** - Mocking library
-- **Spring Boot Test** - Integration testing
+- 🔐 Secure JWT Authentication
+- 🌐 OAuth2 Login (Google & GitHub)
+- 🤖 AI-powered Helpdesk Chatbot
+- 🎫 Helpdesk Ticket Management
+- 👤 Role-Based Access Control (RBAC)
+- 📄 RESTful APIs
+- 📚 Swagger/OpenAPI Documentation
+- 🗄️ MySQL Database Integration
+- 🛡️ Spring Security
+- ⚡ Modern React Frontend
+- 🧩 Layered Architecture
+- ✅ Enterprise-Level Coding Practices
 
-## 🏗 Architecture
+## 📑 Table of Contents
 
-### Layered Architecture Pattern
+* [🚀 Overview](#-overview)
+* [✨ Key Features](#-key-features)
+* [🛠️ Technology Stack](#️-technology-stack)
+* [🏗️ System Architecture](#️-system-architecture)
+* [📂 Project Structure](#-project-structure)
 
+### 🚀 Getting Started
+
+* [📋 Prerequisites](#-prerequisites)
+* [⚙️ Installation](#️-installation)
+* [🔧 Environment Configuration](#-environment-configuration)
+* [▶️ Running the Application](#️-running-the-application)
+
+### 🔐 Authentication & Security
+
+* [🔑 Authentication Flow](#-authentication-flow)
+* [🛡️ Security Features](#️-security-features)
+
+### 📚 API Documentation
+
+* [📖 Swagger / OpenAPI](#-swagger--openapi)
+* [📡 REST API Endpoints](#-rest-api-endpoints)
+
+### 🤖 AI Module
+
+* [🧠 AI Chatbot Workflow](#-ai-chatbot-workflow)
+* [💬 AI Features](#-ai-features)
+
+### 🗄️ Database
+
+* [🗃️ Database Schema](#️-database-schema)
+* [📝 Entity Relationship Diagram (ERD)](#-entity-relationship-diagram-erd)
+
+### 📸 Screenshots
+
+* [🔐 Authentication](#-authentication)
+* [🏠 Dashboard](#-dashboard)
+* [🎫 Ticket Management](#-ticket-management)
+* [🤖 AI Chatbot](#-ai-chatbot)
+
+### 🧪 Testing
+
+* [✅ Unit Testing](#-unit-testing)
+* [🔄 Integration Testing](#-integration-testing)
+
+### 🚀 Deployment
+
+* [🐳 Docker](#-docker)
+* [☁️ Production Deployment](#️-production-deployment)
+
+### 📈 Future Scope
+
+* [🛣️ Roadmap](#️-roadmap)
+
+### 🤝 Community
+
+* [🤝 Contributing](#-contributing)
+* [🐞 Known Issues](#-known-issues)
+* [❓ FAQ](#-faq)
+
+### 📄 License
+
+* [📜 License](#-license)
+
+### 👨‍💻 Author
+
+* [👤 About the Author](#-about-the-author)
+
+### 🙏 Acknowledgements
+
+* [❤️ Credits](#-credits)
+
+## ✨ Key Features
+
+The **AI Helpdesk Chatbot System** is designed to simplify customer support by combining secure authentication, intelligent AI assistance, and efficient ticket management into a modern full-stack application.
+
+---
+
+## 🔐 Authentication & Authorization
+
+Secure and modern authentication mechanisms powered by **Spring Security**.
+
+* ✅ User Registration with input validation
+* ✅ Secure Login using JWT Authentication
+* ✅ Google OAuth2 Login
+* ✅ GitHub OAuth2 Login
+* ✅ Refresh Token support
+* ✅ Password encryption using BCrypt
+* ✅ Role-Based Access Control (RBAC)
+* ✅ Protected REST APIs
+* ✅ Session-independent authentication
+* ✅ Secure logout functionality
+
+---
+
+## 👤 User Management
+
+Manage user accounts and profiles with ease.
+
+* 👤 User Registration & Profile Management
+* ✏️ Update User Information
+* 🔒 Change Password
+* 📧 Email-based account support *(Planned)*
+* 🛡️ Role management (User/Admin)
+
+---
+
+## 🎫 Helpdesk Ticket Management
+
+A complete support ticket lifecycle for users and administrators.
+
+* ➕ Create Support Tickets
+* 📋 View Ticket History
+* ✏️ Update Ticket Details
+* 🗑️ Delete Tickets
+* 📌 Track Ticket Status
+* 🔍 Search and Filter Tickets
+* 📂 Ticket Categorization *(Planned)*
+* 👨‍💼 Admin Ticket Management
+
+---
+
+## 🤖 AI-Powered Chatbot
+
+Integrated AI assistant to improve support efficiency.
+
+* 💬 Intelligent AI Conversations
+* ❓ Automated Question Answering
+* ⚡ Instant Responses
+* 📚 Context-Aware Assistance
+* 🧠 Spring AI Integration
+* 🔄 Extensible LLM Provider Support
+
+---
+
+## 🛡️ Security Features
+
+Enterprise-grade security practices.
+
+* 🔐 JWT Access Tokens
+* 🔄 Refresh Token Authentication
+* 🔒 BCrypt Password Hashing
+* 🧾 Request Validation
+* 🚫 Unauthorized Access Protection
+* 🔑 OAuth2 Authentication
+* 🧹 Global Exception Handling
+* 🛡️ Secure API Endpoints
+
+---
+
+## 📖 REST API
+
+Well-structured RESTful APIs following industry best practices.
+
+* 🌐 RESTful API Design
+* 📄 JSON Request/Response
+* 📚 Swagger/OpenAPI Documentation
+* ⚠️ Standardized Error Responses
+* ✅ Request Validation
+* 📦 DTO-Based Communication
+
+---
+
+## 🗄️ Database Management
+
+Reliable and scalable data persistence.
+
+* 🗃️ MySQL Database
+* ⚙️ Spring Data JPA
+* 🔄 Hibernate ORM
+* 🔍 Optimized Database Queries
+* 📑 Entity Relationships
+* 📈 Scalable Data Model
+
+---
+
+## 🎨 Modern Frontend
+
+Responsive and user-friendly interface built with React.
+
+* ⚛️ React-based SPA
+* 🎯 Responsive Design
+* 🔄 API Integration with Axios
+* 🔔 Toast Notifications
+* 📝 Form Validation
+* ⚡ Fast User Experience
+
+---
+
+## 🧩 Software Architecture
+
+Designed with maintainability and scalability in mind.
+
+* 📂 Layered Architecture
+* 🧹 Clean Code Principles
+* 🧱 Modular Components
+* 🔌 Service-Oriented Design
+* 📦 DTO & Mapper Pattern
+* 🛠️ Centralized Exception Handling
+* 🧪 Easy to Test and Extend
+
+---
+
+## 🚀 Future Enhancements
+
+Planned features for future releases.
+
+* 📧 Email Verification
+* 🔑 Forgot Password & Password Reset
+* 📎 File Attachments for Tickets
+* 🔔 Email Notifications
+* 📊 Admin Analytics Dashboard
+* 🤖 AI Ticket Classification
+* 🐳 Docker Support
+* ☁️ Cloud Deployment
+* 🔄 CI/CD Pipeline
+* 📱 Progressive Web App (PWA)
+
+---
+
+## 🛠️ Technology Stack
+
+The AI Helpdesk Chatbot System is built using a modern full-stack technology stack that emphasizes scalability, security, maintainability, and performance.
+
+---
+
+## Backend
+
+| Technology      | Version | Purpose                                    |
+| --------------- | ------- | ------------------------------------------ |
+| Java            | 21      | Core programming language                  |
+| Spring Boot     | 3.x     | Backend application framework              |
+| Spring Security | 6.x     | Authentication and authorization           |
+| Spring Data JPA | 3.x     | Database access and ORM                    |
+| Hibernate       | 6.x     | ORM implementation                         |
+| Spring AI       | Latest  | AI chatbot integration                     |
+| Maven           | 3.9+    | Dependency management and build automation |
+
+---
+
+## Frontend
+
+| Technology        | Version | Purpose                       |
+| ----------------- | ------- | ----------------------------- |
+| React             | 19      | User interface development    |
+| JavaScript (ES6+) | Latest  | Frontend programming language |
+| React Router      | 7.x     | Client-side routing           |
+| Axios             | Latest  | HTTP client for REST APIs     |
+| Tailwind CSS      | Latest  | Utility-first CSS framework   |
+| Vite              | Latest  | Fast frontend build tool      |
+
+---
+
+## Database
+
+| Technology      | Purpose                   |
+| --------------- | ------------------------- |
+| MySQL 8         | Relational database       |
+| Hibernate ORM   | Object-relational mapping |
+| Spring Data JPA | Repository abstraction    |
+
+---
+
+## Authentication & Security
+
+| Technology           | Purpose                  |
+| -------------------- | ------------------------ |
+| Spring Security      | Application security     |
+| JWT (JSON Web Token) | Stateless authentication |
+| OAuth2               | Social login integration |
+| Google OAuth2        | Google authentication    |
+| GitHub OAuth2        | GitHub authentication    |
+| BCrypt               | Password hashing         |
+
+---
+
+## AI Integration
+
+| Technology      | Purpose                       |
+| --------------- | ----------------------------- |
+| Spring AI       | AI framework                  |
+| LLM Provider    | Natural language processing   |
+| AI Chat Service | Intelligent chatbot responses |
+
+> **Note:** The AI layer is designed to support multiple LLM providers, making it easy to switch or extend integrations in the future.
+
+---
+
+## API & Documentation
+
+| Technology | Purpose                                    |
+| ---------- | ------------------------------------------ |
+| REST API   | Communication between frontend and backend |
+| OpenAPI 3  | API specification                          |
+| Swagger UI | Interactive API documentation              |
+| JSON       | Data exchange format                       |
+
+---
+
+## Development Tools
+
+| Tool               | Purpose                               |
+| ------------------ | ------------------------------------- |
+| IntelliJ IDEA      | Backend development                   |
+| Visual Studio Code | Frontend development                  |
+| Postman            | API testing                           |
+| Git                | Version control                       |
+| GitHub             | Source code hosting and collaboration |
+
+---
+
+## Build & Dependency Management
+
+| Tool  | Purpose                                 |
+| ----- | --------------------------------------- |
+| Maven | Backend dependency management           |
+| npm   | Frontend package management             |
+| Vite  | Frontend development server and bundler |
+
+---
+
+## Architecture
+
+| Layer              | Technology                     |
+| ------------------ | ------------------------------ |
+| Presentation Layer | React                          |
+| API Layer          | Spring Boot REST Controllers   |
+| Business Layer     | Service Classes                |
+| Security Layer     | Spring Security + JWT + OAuth2 |
+| Persistence Layer  | Spring Data JPA + Hibernate    |
+| Database Layer     | MySQL                          |
+| AI Layer           | Spring AI                      |
+
+---
+
+## Technology Highlights
+
+* ☕ Java 21 with modern language features
+* 🌱 Spring Boot 3.x for rapid backend development
+* 🔐 Spring Security with JWT and OAuth2 authentication
+* ⚛️ React 19 for building a responsive single-page application
+* 🤖 Spring AI for intelligent chatbot capabilities
+* 🗄️ MySQL with Hibernate ORM for reliable data persistence
+* 📚 Swagger/OpenAPI for interactive REST API documentation
+* 🚀 Maven and Vite for efficient build automation
+* 🧩 Layered architecture following enterprise development best practices
+
+---
+
+# 🏗️ System Architecture
+
+The **AI Helpdesk Chatbot System** follows a **layered architecture** that separates responsibilities into independent modules. This approach improves maintainability, scalability, testability, and code readability.
+
+---
+
+# 📐 High-Level Architecture
+
+```text
+                        +----------------------+
+                        |      End Users       |
+                        +----------+-----------+
+                                   |
+                                   |
+                              HTTP / HTTPS
+                                   |
+                                   ▼
++-------------------------------------------------------------+
+|                     React Frontend (Vite)                   |
+|-------------------------------------------------------------|
+| Login | Register | Dashboard | Tickets | AI Chat | Profile |
++----------------------------+--------------------------------+
+                             |
+                    REST API (JSON)
+                             |
+                             ▼
++-------------------------------------------------------------+
+|                 Spring Boot REST Backend                    |
+|-------------------------------------------------------------|
+| Controllers → Services → Repositories → Database            |
++----------------------------+--------------------------------+
+                             |
+         +-------------------+-------------------+
+         |                                       |
+         ▼                                       ▼
++--------------------------+         +--------------------------+
+| Spring Security          |         |      Spring AI           |
+|--------------------------|         |--------------------------|
+| JWT Authentication       |         | AI Chat Service          |
+| OAuth2 Login             |         | Prompt Processing        |
+| Role-Based Authorization |         | LLM Integration          |
++--------------------------+         +--------------------------+
+         |                                       |
+         +-------------------+-------------------+
+                             |
+                             ▼
+                   +----------------------+
+                   |      MySQL Database  |
+                   +----------------------+
 ```
-┌─────────────────────────────────────────┐
-│          CLIENT (Web/Mobile)            │
-└──────────────────┬──────────────────────┘
-                   │
-┌──────────────────▼──────────────────────┐
-│      REST Controllers Layer              │
-│   (Handle HTTP Requests/Responses)      │
-└──────────────────┬──────────────────────┘
-                   │
-┌──────────────────▼──────────────────────┐
-│      Service Layer                       │
-│ (Business Logic, Validation, AI Tool)   │
-└──────────────────┬──────────────────────┘
-                   │
-┌──────────────────▼──────────────────────┐
-│    Repository Layer (Data Access)        │
-│     (JPA, Custom Queries)                │
-└──────────────────┬──────────────────────┘
-                   │
-┌──────────────────▼──────────────────────┐
-│      Database Layer                      │
-│    (MySQL/PostgreSQL)                    │
-└─────────────────────────────────────────┘
+
+---
+
+# 🧱 Layered Architecture
+
+The backend is organized using a clean layered architecture where each layer has a specific responsibility.
+
+```text
+Client (React)
+        │
+        ▼
+REST Controller
+        │
+        ▼
+Service Layer
+        │
+        ▼
+Repository Layer
+        │
+        ▼
+MySQL Database
 ```
 
-### Component Interaction
+### Presentation Layer
 
+Responsible for interacting with users.
+
+**Technologies**
+
+* React
+* React Router
+* Axios
+* Tailwind CSS
+
+Responsibilities
+
+* User Interface
+* Form Validation
+* API Requests
+* Authentication Screens
+* Dashboard
+* Ticket Management
+* AI Chat Interface
+
+---
+
+### Controller Layer
+
+Handles incoming HTTP requests.
+
+Responsibilities
+
+* Receive client requests
+* Validate request payloads
+* Call business services
+* Return REST responses
+* Handle HTTP status codes
+
+---
+
+### Service Layer
+
+Contains all business logic.
+
+Responsibilities
+
+* User registration
+* Login
+* JWT generation
+* OAuth2 user processing
+* Ticket management
+* AI chatbot integration
+* Profile management
+
+---
+
+### Repository Layer
+
+Responsible for database communication.
+
+Responsibilities
+
+* CRUD Operations
+* Custom Queries
+* Entity Persistence
+* Database Transactions
+
+---
+
+### Database Layer
+
+Stores all application data.
+
+Main entities include:
+
+* Users
+* Roles
+* Refresh Tokens
+* Support Tickets
+* AI Conversations *(Planned)*
+
+---
+
+# 🔄 Request Flow
+
+Every request follows the same lifecycle.
+
+```text
+React UI
+     │
+     ▼
+Axios Request
+     │
+     ▼
+REST Controller
+     │
+     ▼
+Service Layer
+     │
+     ▼
+Repository
+     │
+     ▼
+MySQL Database
+     │
+     ▼
+Repository
+     │
+     ▼
+Service
+     │
+     ▼
+Controller
+     │
+     ▼
+JSON Response
+     │
+     ▼
+React UI
 ```
-TicketController
-       ↓
-TicketService → TicketValidator → TicketDatabaseTool (AI)
-       ↓
-TicketRepository
-       ↓
-Ticket Entity
-       ↓
+
+---
+
+# 🔐 Authentication Architecture
+
+The application uses **JWT-based stateless authentication** together with **OAuth2** social login.
+
+```text
+User Login
+      │
+      ▼
+Authentication Request
+      │
+      ▼
+Spring Security
+      │
+      ▼
+Authentication Manager
+      │
+      ▼
+User Verification
+      │
+      ▼
+JWT Token Generation
+      │
+      ▼
+Token Returned to React
+      │
+      ▼
+Stored Securely
+      │
+      ▼
+Authorization Header
+      │
+      ▼
+Protected REST APIs
+```
+
+---
+
+# 🌐 OAuth2 Authentication Flow
+
+Users can authenticate using Google or GitHub.
+
+```text
+React
+   │
+   ▼
+Google / GitHub Login
+   │
+   ▼
+OAuth2 Provider
+   │
+   ▼
+User Authentication
+   │
+   ▼
+Spring Security OAuth2
+   │
+   ▼
+OAuth2UserService
+   │
+   ▼
+Create or Update User
+   │
+   ▼
+Generate JWT
+   │
+   ▼
+Return Token
+   │
+   ▼
+React Dashboard
+```
+
+---
+
+# 🤖 AI Chatbot Architecture
+
+The AI module is designed to be modular and provider-independent.
+
+```text
+User Message
+      │
+      ▼
+React Chat Interface
+      │
+      ▼
+Spring Boot REST API
+      │
+      ▼
+AI Chat Service
+      │
+      ▼
+Spring AI
+      │
+      ▼
+LLM Provider
+      │
+      ▼
+AI Response
+      │
+      ▼
+React UI
+```
+
+---
+
+# 📦 Architectural Highlights
+
+* 🧩 Layered Architecture
+* 🔐 Stateless JWT Authentication
+* 🌐 OAuth2 Social Login (Google & GitHub)
+* 🤖 AI Integration using Spring AI
+* 📄 RESTful API Design
+* 🗄️ Repository Pattern with Spring Data JPA
+* 🔄 DTO & Mapper Pattern
+* 🛡️ Global Exception Handling
+* ⚙️ Dependency Injection
+* 📈 Scalable and Maintainable Codebase
+* 🚀 Production-Ready Design
+
+---
+
+# 📂 Project Structure
+
+The **AI Helpdesk Chatbot System** is organized into separate **backend** and **frontend** applications, following a clean and modular architecture. This separation allows each application to be developed, tested, and deployed independently.
+
+---
+
+## 📁 Root Directory
+
+```text
+ai-helpdesk-chatbot/
+│
+├── backend/                 # Spring Boot REST API
+├── frontend/                # React Application
+├── docs/                    # Project documentation
+├── screenshots/             # README images and GIFs
+├── .gitignore
+├── LICENSE
+└── README.md
+```
+
+---
+
+# ☕ Backend Structure (Spring Boot)
+
+```text
+backend/
+│
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/
+│   │   │       └── substring/
+│   │   │           └── helpdesk/
+│   │   │
+│   │   │               ├── config/
+│   │   │               ├── controller/
+│   │   │               ├── dto/
+│   │   │               │    ├── request/
+│   │   │               │    └── response/
+│   │   │               ├── entity/
+│   │   │               ├── repository/
+│   │   │               ├── service/
+│   │   │               │    └── impl/
+│   │   │               ├── mapper/
+│   │   │               ├── security/
+│   │   │               │    ├── jwt/
+│   │   │               │    ├── oauth2/
+│   │   │               │    ├── filter/
+│   │   │               │    └── handler/
+│   │   │               ├── exception/
+│   │   │               ├── validation/
+│   │   │               ├── util/
+│   │   │               └── HelpdeskApplication.java
+│   │   │
+│   │   └── resources/
+│   │       ├── application.properties
+│   │       ├── application-dev.properties
+│   │       ├── application-prod.properties
+│   │       ├── static/
+│   │       └── templates/
+│   │
+│   └── test/
+│
+├── pom.xml
+└── mvnw
+```
+
+---
+
+## ⚛️ Frontend Structure (React)
+
+```text
+frontend/
+│
+├── public/
+│
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   ├── common/
+│   │   ├── auth/
+│   │   ├── dashboard/
+│   │   ├── chatbot/
+│   │   ├── ticket/
+│   │   └── ui/
+│   │
+│   ├── pages/
+│   ├── layouts/
+│   ├── routes/
+│   ├── services/
+│   ├── hooks/
+│   ├── context/
+│   ├── schemas/
+│   ├── utils/
+│   ├── constants/
+│   ├── App.jsx
+│   └── main.jsx
+│
+├── package.json
+├── vite.config.js
+└── eslint.config.js
+```
+
+---
+
+# 📦 Backend Package Overview
+
+| Package      | Description                                                       |
+| ------------ | ----------------------------------------------------------------- |
+| `config`     | Spring Boot configuration, beans, CORS, Swagger, AI configuration |
+| `controller` | REST API endpoints that receive HTTP requests                     |
+| `dto`        | Request and response Data Transfer Objects                        |
+| `entity`     | JPA entity classes mapped to database tables                      |
+| `repository` | Spring Data JPA repositories for database operations              |
+| `service`    | Business logic and application services                           |
+| `mapper`     | Entity ↔ DTO conversion                                           |
+| `security`   | JWT, OAuth2, filters, handlers, and security configuration        |
+| `exception`  | Global exception handling and custom exceptions                   |
+| `validation` | Custom validators and validation logic                            |
+| `util`       | Utility classes and helper methods                                |
+
+---
+
+# 🎨 Frontend Folder Overview
+
+| Folder       | Description                                          |
+| ------------ | ---------------------------------------------------- |
+| `assets`     | Images, icons, fonts, and static resources           |
+| `components` | Reusable React UI components                         |
+| `pages`      | Application pages (Login, Register, Dashboard, etc.) |
+| `layouts`    | Shared layouts such as Navbar, Sidebar, Footer       |
+| `routes`     | Route configuration and protected routes             |
+| `services`   | Axios API services and backend communication         |
+| `hooks`      | Custom React hooks                                   |
+| `context`    | Global state management using React Context          |
+| `schemas`    | Zod validation schemas                               |
+| `utils`      | Helper and utility functions                         |
+| `constants`  | Application-wide constants and configuration         |
+
+---
+
+# 🏗️ Backend Layer Organization
+
+The backend follows a layered architecture to separate responsibilities.
+
+```text
+Controller
+     │
+     ▼
+Service
+     │
+     ▼
+Repository
+     │
+     ▼
 Database
 ```
 
+### Controller Layer
+
+* Handles incoming HTTP requests
+* Validates request payloads
+* Returns standardized API responses
+
+### Service Layer
+
+* Contains business logic
+* Coordinates application workflows
+* Communicates with repositories and external services
+
+### Repository Layer
+
+* Performs CRUD operations
+* Executes database queries
+* Uses Spring Data JPA
+
+### Database Layer
+
+* Stores application data in MySQL
+* Managed using Hibernate ORM
+
 ---
+
+# 📈 Benefits of This Structure
+
+* ✅ Clean and modular architecture
+* ✅ Easy to maintain and extend
+* ✅ Separation of concerns
+* ✅ Reusable components and services
+* ✅ Scalable for large applications
+* ✅ Simplifies testing and debugging
+* ✅ Follows Spring Boot and React best practices
+
+---
+
+## 📌 Technology Mapping
+
+| Layer          | Technology                          |
+| -------------- | ----------------------------------- |
+| Frontend       | React + Vite + Axios + Tailwind CSS |
+| Backend        | Spring Boot + Spring MVC            |
+| Security       | Spring Security + JWT + OAuth2      |
+| Business Logic | Service Layer                       |
+| Persistence    | Spring Data JPA + Hibernate         |
+| Database       | MySQL                               |
+| AI Integration | Spring AI                           |
+| Documentation  | Swagger / OpenAPI                   |
+| Build Tools    | Maven & npm                         |
+
+---
+
+> **💡 Note:** This project structure follows industry-standard practices used in enterprise Java applications, making the codebase modular, maintainable, and easy for new contributors to understand.
+
 
 ## 🚀 Getting Started
 

@@ -2,8 +2,18 @@
 server:
   servlet:
     context-path: /helpdesk
+<<<<<<< HEAD
 
 # Spring Configuration
+=======
+# Swagger-ui
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui
+# Application Name
+>>>>>>> 7ba51ed (swagger-ui updated)
 spring:
   application:
     name: help-desk-backend
