@@ -410,7 +410,7 @@ The **AI Helpdesk Chatbot System** follows a **layered architecture** that separ
 
 # 📐 High-Level Architecture
 
-```text
+```
                               +----------------------+
                               |      End Users       |
                               +----------+-----------+
