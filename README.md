@@ -459,7 +459,7 @@ The **AI Helpdesk Chatbot System** follows a **layered architecture** that separ
 
 The backend is organized using a clean layered architecture where each layer has a specific responsibility.
 
-```text
+```
 Client (React)
         │
         ▼
